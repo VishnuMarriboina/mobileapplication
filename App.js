@@ -20,7 +20,8 @@ const App = () => {
           <SafeAreaProvider>
             <GestureHandlerRootView>
               <BottomSheetModalProvider>
-                <StatusBar barStyle='default' translucent={true} />
+                {/* <StatusBar barStyle='default' translucent={true} /> */}
+                <StatusBar backgroundColor={'transparent'} barStyle="dark-content" translucent={true} />
                 {/* <MainStack /> */}
                 {/* <Bottomsheet /> */}
                 {/* <Login /> */}

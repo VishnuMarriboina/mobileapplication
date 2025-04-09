@@ -95,7 +95,7 @@
 
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, FlatList, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet, FlatList, Platform, KeyboardAvoidingView, StatusBar } from 'react-native';
 import { SCREEN_WIDTH } from '../Utils/Dimensions';
 import { SvgUri } from 'react-native-svg';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -181,154 +181,158 @@ const FuelRecords = () => {
 
     return (
         // <ScrollView style={{ flex: 1, backgroundColor: "#D8DDE2" }} keyboardShouldPersistTaps="handled">
-        <View style={{ flex: 1, backgroundColor: "#D8DDE2" }}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
-                style={{ flex: 1 }}
-            >
-                <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <>
 
-                    <View style={{ flex: 1, backgroundColor: "#D8DDE2" }}>
-                        <View style={styles.container}>
-                            {/* Add Fuel Button */}
-                            <TouchableOpacity style={styles.fuelButton} onPress={toggleInputContainer}>
-                                <Text style={styles.buttonText}>+   Add Fuel</Text>
-                            </TouchableOpacity>
+            {/* <StatusBar barStyle={"dark-content"} backgroundColor="white" /> */}
+            <View style={{ flex: 1, backgroundColor: "#D8DDE2" }}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={{ flex: 1 }}
+                >
+                    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
-                            {/* Input Fields - Shown on Clicking Add Fuel */}
-                            {showInputs && (
-                                <View style={styles.inputContainer}>
-                                    <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#EFF0F2", padding: 10 }}>
-                                        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                                            <SvgUri
-                                                uri={
-                                                    'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
-                                                }
-                                                style={{ width: 24, height: 24 }}
+                        <View style={{ flex: 1, backgroundColor: "#D8DDE2" }}>
+                            <View style={styles.container}>
+                                {/* Add Fuel Button */}
+                                <TouchableOpacity style={styles.fuelButton} onPress={toggleInputContainer}>
+                                    <Text style={styles.buttonText}>+   Add Fuel</Text>
+                                </TouchableOpacity>
 
-                                            />
-                                            <Text>Date</Text>
+                                {/* Input Fields - Shown on Clicking Add Fuel */}
+                                {showInputs && (
+                                    <View style={styles.inputContainer}>
+                                        <View style={{ flexDirection: "row", justifyContent: "space-between", backgroundColor: "#EFF0F2", padding: 10 }}>
+                                            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                                                <SvgUri
+                                                    uri={
+                                                        'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
+                                                    }
+                                                    style={{ width: 24, height: 24 }}
+
+                                                />
+                                                <Text>Date</Text>
+                                            </View>
+                                            <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                                                <SvgUri
+                                                    uri={
+                                                        'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/timeline.svg'
+                                                    }
+                                                    style={{ width: 24, height: 24 }}
+
+                                                />
+
+
+                                                <Text>Time</Text>
+                                            </View>
                                         </View>
-                                        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                                            <SvgUri
-                                                uri={
-                                                    'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/timeline.svg'
-                                                }
-                                                style={{ width: 24, height: 24 }}
-
-                                            />
-
-
-                                            <Text>Time</Text>
+                                        <Text>Litters</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter Liters"
+                                            placeholderTextColor="#9CA3AF"
+                                            selectionColor="black"
+                                            keyboardType="numeric"
+                                            value={liters}
+                                            onChangeText={handleLitersChange}
+                                        />
+                                        <Text>Amount</Text>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Enter Amount"
+                                            placeholderTextColor="#9CA3AF"
+                                            selectionColor="black"
+                                            keyboardType="numeric"
+                                            value={amount}
+                                            onChangeText={handleAmountChange}
+                                        />
+                                        <Text>Total cost</Text>
+                                        <View style={styles.costbutton}>
+                                            <Text>₹{totalCost}</Text>
                                         </View>
-                                    </View>
-                                    <Text>Litters</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter Liters"
-                                        placeholderTextColor="#9CA3AF"
-                                        selectionColor="black"
-                                        keyboardType="numeric"
-                                        value={liters}
-                                        onChangeText={handleLitersChange}
-                                    />
-                                    <Text>Amount</Text>
-                                    <TextInput
-                                        style={styles.input}
-                                        placeholder="Enter Amount"
-                                        placeholderTextColor="#9CA3AF"
-                                        selectionColor="black"
-                                        keyboardType="numeric"
-                                        value={amount}
-                                        onChangeText={handleAmountChange}
-                                    />
-                                    <Text>Total cost</Text>
-                                    <View style={styles.costbutton}>
-                                        <Text>₹{totalCost}</Text>
-                                    </View>
 
-                                    {/* Display the Product
+                                        {/* Display the Product
                         <View style={styles.totalContainer}>
                             <Text style={styles.totalText}>Total Cost</Text>
                             {/* <Text style={styles.totalText}> ₹{totalCost}</Text> */}
-                                    {/* <TouchableOpacity style={styles.costbutton}>
+                                        {/* <TouchableOpacity style={styles.costbutton}>
                                 <Text>₹{totalCost}</Text>
                             </TouchableOpacity>
                         </View>  */}
 
 
 
-                                    {/* bill upload button */}
-                                    <TouchableOpacity style={styles.billButton}>
-                                        <Text>
-                                            Diesel Bill
-                                        </Text>
+                                        {/* bill upload button */}
+                                        <TouchableOpacity style={styles.billButton}>
+                                            <Text>
+                                                Diesel Bill
+                                            </Text>
+                                            <SvgUri
+                                                uri={
+                                                    'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload2.svg'
+                                                }
+                                                style={{ width: 24, height: 24 }}
+
+                                            />
+                                        </TouchableOpacity>
+
+
+
+
+
+
+
+                                        {/* Submit Button */}
+                                        <TouchableOpacity style={styles.submitButton}
+                                            //   onPress={() => Alert.alert("Fuel Data Submitted")}
+                                            onPress={handleSubmit}>
+                                            <Text style={styles.submitText}>Submit</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
+
+                                {/* To show the data in table modal */}
+                                <View style={styles.inputContainer}>
+                                    {/* Summary Header */}
+                                    <View style={styles.header}>
+                                        <Text style={styles.summaryText}>Summary</Text>
                                         <SvgUri
                                             uri={
-                                                'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload2.svg'
+                                                'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
                                             }
                                             style={{ width: 24, height: 24 }}
 
                                         />
-                                    </TouchableOpacity>
-
-
-
-
-
-
-
-                                    {/* Submit Button */}
-                                    <TouchableOpacity style={styles.submitButton}
-                                        //   onPress={() => Alert.alert("Fuel Data Submitted")}
-                                        onPress={handleSubmit}>
-                                        <Text style={styles.submitText}>Submit</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            )}
-
-                            {/* To show the data in table modal */}
-                            <View style={styles.inputContainer}>
-                                {/* Summary Header */}
-                                <View style={styles.header}>
-                                    <Text style={styles.summaryText}>Summary</Text>
-                                    <SvgUri
-                                        uri={
-                                            'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
-                                        }
-                                        style={{ width: 24, height: 24 }}
-
-                                    />
-                                </View>
-
-                                {/* Table Header */}
-                                <View style={{ borderColor: "#D8DDE2", borderWidth: 2, borderRadius: 5 }}>
-                                    <View style={styles.tableHeader}>
-                                        <Text style={styles.headerText}>Date</Text>
-                                        <Text style={styles.headerText}>Liters</Text>
-                                        <Text style={styles.headerText}>Cost</Text>
                                     </View>
 
-                                    {/* Dynamic Table Rows */}
-                                    <FlatList
-                                        data={fuelData}
-                                        nestedScrollEnabled={true} // Fixes scrolling inside ScrollView
-                                        keyExtractor={(item) => item.id}
-                                        renderItem={({ item }) => (
-                                            <View style={styles.tableRow}>
-                                                <Text style={styles.cell}>{item.date}</Text>
-                                                <Text style={styles.cell}>{item.liters}</Text>
-                                                <Text style={styles.cell}>{item.cost}</Text>
-                                            </View>
-                                        )}
-                                    />
+                                    {/* Table Header */}
+                                    <View style={{ borderColor: "#D8DDE2", borderWidth: 2, borderRadius: 5 }}>
+                                        <View style={styles.tableHeader}>
+                                            <Text style={styles.headerText}>Date</Text>
+                                            <Text style={styles.headerText}>Liters</Text>
+                                            <Text style={styles.headerText}>Cost</Text>
+                                        </View>
+
+                                        {/* Dynamic Table Rows */}
+                                        <FlatList
+                                            data={fuelData}
+                                            nestedScrollEnabled={true} // Fixes scrolling inside ScrollView
+                                            keyExtractor={(item) => item.id}
+                                            renderItem={({ item }) => (
+                                                <View style={styles.tableRow}>
+                                                    <Text style={styles.cell}>{item.date}</Text>
+                                                    <Text style={styles.cell}>{item.liters}</Text>
+                                                    <Text style={styles.cell}>{item.cost}</Text>
+                                                </View>
+                                            )}
+                                        />
+                                    </View>
                                 </View>
                             </View>
                         </View>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
-        </View>
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </View>
+        </>
     );
 };
 

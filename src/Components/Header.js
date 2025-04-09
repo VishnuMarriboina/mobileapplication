@@ -5,28 +5,49 @@ import LinearGradient from "react-native-linear-gradient";
 import { SvgUri } from "react-native-svg";
 import { BRANDCOLOR } from "../Utils/Colors";
 import DrawerNavigator from "../DrawerNavigator/CustomDrawerContent";
-
+import { updateDriverDetails } from '../Redux/Slices/DriverSlice';
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = ({ title }) => {
 
     const [isToggled, setIsToggled] = useState(false);
 
 
+    const dispatch = useDispatch();
+    // const status = useSelector((state) => { state.Driverdata })
+
+    const { status } = useSelector((state) => state.Driverdata);
+    console.log(status)
     const handleToggle = () => {
         setIsToggled((prev) => !prev);
+
+
     };
 
-    const [isDrawer, setIsDrawer] = useState(false);
+    if (isToggled) {
 
+        dispatch(updateDriverDetails({
+            status: isToggled,
+        }
+        ));
 
-    const handleDrawer = () => {
-        setIsDrawer((prev) => !prev);
-    };
-
-    if (isDrawer) {
-        console.log("drawer is called!!");
-        return<DrawerNavigator />
+    } else {
+        dispatch(updateDriverDetails({
+            status: isToggled,
+        }
+        ));
     }
+
+
+    // const [isDrawer, setIsDrawer] = useState(false);
+    // const handleDrawer = () => {
+    //     setIsDrawer((prev) => !prev);
+    // };
+
+    // if (isDrawer) {
+    //     console.log("drawer is called!!");
+    //     return <DrawerNavigator />
+    // }
 
 
     const navigation = useNavigation();
@@ -64,6 +85,7 @@ const Header = ({ title }) => {
                             <View>
                                 <Text style={styles.headerText}>{title}</Text>
                             </View>
+
                             <View>
                                 <TouchableOpacity
                                     style={[styles.outer, isToggled && styles.outerToggled]}
@@ -80,8 +102,9 @@ const Header = ({ title }) => {
                                 </TouchableOpacity>
 
                             </View>
-                            <View>
 
+
+                            <View>
                                 <TouchableOpacity
                                     // onPress={() => navigation.navigate("Profile")}
 
@@ -129,7 +152,7 @@ const styles = StyleSheet.create({
     header: {
         height: 70,
         // marginTop: 40,
-        backgroundColor: "#208575",
+        // backgroundColor: "#208575",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",

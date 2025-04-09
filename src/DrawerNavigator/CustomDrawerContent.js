@@ -5,7 +5,7 @@
 // import { ScrollView } from 'react-native-gesture-handler';
 // import { SvgUri } from 'react-native-svg';
 
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Alert, Image, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Alert, } from 'react-native'
 import React, { useState } from 'react'
 import { BRANDCOLOR } from '../Utils/Colors'
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +14,8 @@ import { SvgUri } from 'react-native-svg';
 import BarCard from '../Components/BarCard';
 import { SCREEN_WIDTH } from '../Utils/Dimensions';
 import { logout } from '../Redux/Slices/AuthSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native-gesture-handler';
 const CustomDrawerContent = () => {
 
     const navigation = useNavigation();
@@ -44,7 +46,8 @@ const CustomDrawerContent = () => {
 
     // return (
     //     <ScrollView style={styles.container}>
-    //     {/* <SafeAreaView style={[styles.container, {
+    //     {/* <SafeAreaView style={[styles.container, 
+    // {
     //         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
     //     }]}> */}
 
@@ -86,163 +89,169 @@ const CustomDrawerContent = () => {
         <>
 
             {/* top of the profile page */}
-            <View style={styles.header}>
-                <View>
-                    <View style={styles.profileImageContainerN}>
-                        <View style={styles.innerImageContainerN}>
 
-                            <SvgUri
-                                uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Consumer_App/profilenavbar.svg'}
-                                height={42}
-                                width={42}
-                            />
+            <SafeAreaView
+
+                style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}
+            >
+
+                <View style={styles.header}>
+                    <View>
+                        <View style={styles.profileImageContainerN}>
+                            <View style={styles.innerImageContainerN}>
+
+                                <SvgUri
+                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Consumer_App/profilenavbar.svg'}
+                                    height={42}
+                                    width={42}
+                                />
+                            </View>
+                            <TouchableOpacity
+                                style={styles.cameraIconN}
+                                onPress={() => Alert.alert("edit profile!")}
+                                activeOpacity={0.9}>
+                                <SvgUri
+                                    uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Consumer_App/edit.svg"}
+                                    height={42}
+                                    width={42}
+                                />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity
-                            style={styles.cameraIconN}
-                            onPress={() => Alert.alert("edit profile!")}
-                            activeOpacity={0.9}>
-                            <SvgUri
-                                uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Consumer_App/edit.svg"}
-                                height={42}
-                                width={42}
-                            />
-                        </TouchableOpacity>
-                    </View>
 
-                    {/* name and status from the redux tool kit */}
-                    <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
-                        <Text style={styles.name}>{driverName || "N/A"}</Text>
+                        {/* name and status from the redux tool kit */}
+                        <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
+                            <Text style={styles.name}>{driverName || "N/A"}</Text>
 
-                        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5 }}>
-                            <View style={[styles.colorball, { backgroundColor: status?.toLowerCase() === "active" ? "#22C55E" : "red" }]} />
-                            <Text style={styles.status}>{status || "N/A"}</Text>
+                            <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5 }}>
+                                <View style={[styles.colorball, { backgroundColor: status?.toLowerCase() === "active" ? "#22C55E" : "red" }]} />
+                                <Text style={styles.status}>{status || "N/A"}</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
 
 
 
 
-            {/* content of the page or body of the page */}
-            <View style={styles.container}>
-                <ScrollView showsVerticalScrollIndicator={false}>
+                {/* content of the page or body of the page */}
+                <View style={styles.container}>
+                    <ScrollView showsVerticalScrollIndicator={false}>
 
-                    {/* ....................new code....... */}
-                    <BarCard onPress={() => navigation.navigate("Footer")} >
-                        <View style={styles.Card}>
-                            <View>
+                        {/* ....................new code....... */}
+                        <BarCard onPress={() => navigation.navigate("Footer")} >
+                            <View style={styles.Card}>
+                                <View>
 
-                                <SvgUri
-                                    uri={
-                                        'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/dashboard.svg'
-                                    }
-                                    style={{ width: 24, height: 24 }}
+                                    <SvgUri
+                                        uri={
+                                            'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/dashboard.svg'
+                                        }
+                                        style={{ width: 24, height: 24 }}
 
-                                />
+                                    />
+                                </View>
+                                <View style={styles.Info}>
+                                    <Text style={styles.InfoName}>Dashboard</Text>
+                                </View>
+
+                                <View
+                                    style={styles.forwardarrow}>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+                                        height={34}
+                                        width={20}
+                                        tintColor={"gray"}
+                                    />
+
+                                </View>
                             </View>
-                            <View style={styles.Info}>
-                                <Text style={styles.InfoName}>Dashboard</Text>
+                        </BarCard>
+
+                        <BarCard
+                            // width={SCREEN_WIDTH * 0.6}
+                            onPress={() => navigation.navigate("Footer", { screen: "Trips" })} >
+                            <View style={styles.Card}>
+                                <View>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/truckwithbg.svg'}
+                                        style={{ width: 24, height: 24 }}
+                                    />
+
+
+                                </View>
+                                <View style={styles.Info}>
+                                    <Text style={styles.InfoName}>My Trips</Text>
+
+                                </View>
+                                <View
+                                    style={styles.forwardarrow}>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+                                        height={34}
+                                        width={20}
+                                        tintColor={"gray"}
+                                    />
+                                </View>
                             </View>
+                        </BarCard>
 
-                            <View
-                                style={styles.forwardarrow}>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
-                                    height={34}
-                                    width={20}
-                                    tintColor={"gray"}
-                                />
+                        <BarCard onPress={() => { navigation.navigate("FuelRecords") }}>
+                            <View style={styles.Card}>
+                                <View>
+                                    <SvgUri
+                                        uri={
+                                            'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/fuelrecords.svg'
+                                        }
+                                        style={{ width: 24, height: 24 }}
 
+                                    />
+
+                                </View>
+                                <View style={styles.Info}>
+                                    <Text style={styles.InfoName}>Fuel Records</Text>
+
+                                </View>
+                                <View
+                                    style={styles.forwardarrow}>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+                                        height={34}
+                                        width={20}
+                                        tintColor={"gray"}
+                                    />
+                                </View>
                             </View>
-                        </View>
-                    </BarCard>
+                        </BarCard>
 
-                    <BarCard 
-                    // width={SCREEN_WIDTH * 0.6}
-                        onPress={() => navigation.navigate("Footer", { screen: "Trips" })} >
-                        <View style={styles.Card}>
-                            <View>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/truckwithbg.svg'}
-                                    style={{ width: 24, height: 24 }}
-                                />
+                        <BarCard onPress={handleLogout}>
+                            <View style={styles.Card}>
+                                <View>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/logout.svg'
+                                        }
+                                        height={32}
+                                        width={32}
+                                    />
+                                </View>
+                                <View style={styles.Info}>
+                                    <Text style={styles.InfoName}>LogOut</Text>
 
-
+                                </View>
+                                <View
+                                    style={styles.forwardarrow}>
+                                    <SvgUri
+                                        uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+                                        height={34}
+                                        width={20}
+                                        tintColor={"gray"}
+                                    />
+                                </View>
                             </View>
-                            <View style={styles.Info}>
-                                <Text style={styles.InfoName}>My Trips</Text>
+                        </BarCard>
 
-                            </View>
-                            <View
-                                style={styles.forwardarrow}>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
-                                    height={34}
-                                    width={20}
-                                    tintColor={"gray"}
-                                />
-                            </View>
-                        </View>
-                    </BarCard>
-
-                    <BarCard onPress={() => { navigation.navigate("FuelRecords") }}>
-                        <View style={styles.Card}>
-                            <View>
-                                <SvgUri
-                                    uri={
-                                        'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/fuelrecords.svg'
-                                    }
-                                    style={{ width: 24, height: 24 }}
-
-                                />
-
-                            </View>
-                            <View style={styles.Info}>
-                                <Text style={styles.InfoName}>Fuel Records</Text>
-
-                            </View>
-                            <View
-                                style={styles.forwardarrow}>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
-                                    height={34}
-                                    width={20}
-                                    tintColor={"gray"}
-                                />
-                            </View>
-                        </View>
-                    </BarCard>
-
-                    <BarCard onPress={handleLogout}>
-                        <View style={styles.Card}>
-                            <View>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/logout.svg'
-                                    }
-                                    height={32}
-                                    width={32}
-                                />
-                            </View>
-                            <View style={styles.Info}>
-                                <Text style={styles.InfoName}>LogOut</Text>
-
-                            </View>
-                            <View
-                                style={styles.forwardarrow}>
-                                <SvgUri
-                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
-                                    height={34}
-                                    width={20}
-                                    tintColor={"gray"}
-                                />
-                            </View>
-                        </View>
-                    </BarCard>
-
-                </ScrollView>
-            </View>
-
+                    </ScrollView>
+                </View>
+            </SafeAreaView>
         </>
     )
 
@@ -272,7 +281,7 @@ const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 15,
         backgroundColor: "transparent", // Light grey background
-        flex: 1,
+        // flex: 1,
         paddingVertical: 15,
         // backgroundColor: "blue",
         // paddingBottom:50
@@ -282,7 +291,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         // justifyContent: "center",
         paddingVertical: 16,
-        backgroundColor: "red",
+        // backgroundColor: "red",
         position: "relative",
         // height: 170,
         // marginTop: 35,
@@ -336,7 +345,8 @@ const styles = StyleSheet.create({
         padding: 12,
         backgroundColor: "#9C99F5",
         backgroundColor: "#E5E7EB",
-        width: SCREEN_WIDTH * 0.75
+        width: SCREEN_WIDTH * 0.75,
+        // backgroundColor: "red"
         // elevation: 2,
         // shadowColor: '#000',
         // shadowOffset: {

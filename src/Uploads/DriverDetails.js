@@ -102,6 +102,8 @@ const DriverDetails = () => {
     // navigation.goBack();
   };
 
+
+  // redux state update
   const handleSubmit = () => {
     const hasErrors = Object.values(errors).some((error) => error);
 
