@@ -7,16 +7,17 @@ import { BRANDCOLOR } from "../Utils/Colors";
 import { SvgUri } from "react-native-svg";
 import DatePicker from "react-native-date-picker";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import Loading from "../Components/Loading";
 
 const Trips = () => {
   const dispatch = useDispatch();
-  const { products, error } = useSelector((state) => state.Tripsdata);
+  const { products, loading,error } = useSelector((state) => state.Tripsdata);
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
   const [searchQuery, setSearchQuery] = useState(""); // State to hold the search query
   const [filteredTrips, setFilteredTrips] = useState(products); // Filtered trips based on search query
   const [refreshing, setRefreshing] = useState(false);
-const [loading,setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
   const navigation = useNavigation();
 
@@ -24,17 +25,17 @@ const [loading,setLoading] = useState(false)
   const fetchData = async () => {
     setRefreshing(true);
     dispatch(fetchTripsdata());
-    setRefreshing(false);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000)
+
   };
-
-
-  
 
   //  First load
   useEffect(() => {
-    setLoading(true)
+    // setLoading(true)
     dispatch(fetchTripsdata());
-    setLoading(false)
+    // setLoading(false)
   }, [dispatch]);
 
   //  Refetch when coming back to screen
@@ -63,9 +64,8 @@ const [loading,setLoading] = useState(false)
       setFilteredTrips(products); // Show all trips if no search query
     }
   }, [searchQuery, products]);
-
-
   //----------------code for filter option
+
 
   // For the color of the icon
   const getStatusColor = (status) => {
@@ -125,9 +125,10 @@ const [loading,setLoading] = useState(false)
         <Text style={styles.header} >Trips Details(Order ID's)</Text>
         </View> */}
         {/* {loading ? ( */}
-        {loading && !refreshing ? (
-
-          <ActivityIndicator size="large" color="blue" />
+        {/* {loading && refreshing ? ( */}
+        {loading ? (
+          // <ActivityIndicator size="large" color="blue" />
+          <Loading />
         ) : error ? (
           <Text style={styles.error}>{error}</Text>
         ) : (

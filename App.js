@@ -5,10 +5,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { Provider } from 'react-redux';
-import { store } from './src/Redux/Store';
+import { store, persistor } from './src/Redux/Store';
 import StartScreen from './src/Stacks/StartScreen';
 import DriverDetails from './src/Uploads/DriverDetails';
 import DrawerNavigator from './src/DrawerNavigator/CustomDrawerContent';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const App = () => {
 
@@ -16,9 +17,10 @@ const App = () => {
     <>
       {/* <StatusBar backgroundColor={'red'} barStyle="default" /> */}
       <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor} />
         <NavigationContainer>
           <SafeAreaProvider>
-            <GestureHandlerRootView>
+            <GestureHandlerRootView style={{ flex: 1 }}>
               <BottomSheetModalProvider>
                 {/* <StatusBar barStyle='default' translucent={true} /> */}
                 <StatusBar backgroundColor={'transparent'} barStyle="dark-content" translucent={true} />

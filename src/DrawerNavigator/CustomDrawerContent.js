@@ -91,8 +91,8 @@ const CustomDrawerContent = () => {
             {/* top of the profile page */}
 
             <SafeAreaView
-
-                style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}
+            // style={{ backgroundColor: "red", borderRadius: 15 }}
+            // style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}
             >
 
                 <View style={styles.header}>
@@ -123,7 +123,16 @@ const CustomDrawerContent = () => {
                             <Text style={styles.name}>{driverName || "N/A"}</Text>
 
                             <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5 }}>
-                                <View style={[styles.colorball, { backgroundColor: status?.toLowerCase() === "active" ? "#22C55E" : "red" }]} />
+                                <View style={[styles.colorball,
+                                // { backgroundColor: status?.toLowerCase() === "active" ? "#22C55E" : "red" }
+                                {
+                                    backgroundColor:
+                                        typeof status === "string" && status.toLowerCase() === "active"
+                                            ? "#22C55E"
+                                            : "red",
+                                },
+
+                                ]} />
                                 <Text style={styles.status}>{status || "N/A"}</Text>
                             </View>
                         </View>
@@ -284,20 +293,21 @@ const styles = StyleSheet.create({
         // flex: 1,
         paddingVertical: 15,
         // backgroundColor: "blue",
-        // paddingBottom:50
+        // paddingBottom:50,
+        backgroundColor: "white"
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
         // justifyContent: "center",
         paddingVertical: 16,
-        // backgroundColor: "red",
+        backgroundColor: "#1D6B5C",
         position: "relative",
         // height: 170,
         // marginTop: 35,
         // borderBottomLeftRadius: 20,
         // borderBottomRightRadius: 20,
-        backgroundColor: BRANDCOLOR,
+        // backgroundColor: BRANDCOLOR,
         paddingHorizontal: 10,
         // paddingTop: 10, 
     },

@@ -183,7 +183,7 @@ const FuelRecords = () => {
         // <ScrollView style={{ flex: 1, backgroundColor: "#D8DDE2" }} keyboardShouldPersistTaps="handled">
         <>
 
-            {/* <StatusBar barStyle={"dark-content"} backgroundColor="white" /> */}
+            <StatusBar barStyle={"dark-content"} backgroundColor="#D8DDE2" />
             <View style={{ flex: 1, backgroundColor: "#D8DDE2" }}>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}

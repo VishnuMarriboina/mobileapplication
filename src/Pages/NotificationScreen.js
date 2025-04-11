@@ -235,38 +235,44 @@ const NotificationScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      {/* Add this if you want to be extra safe on Android */}
-      {Platform.OS === 'android' && <View style={{ height: StatusBar.currentHeight }} />}
+    <>
+      <StatusBar barStyle={"dark-content"} backgroundColor="white" />
+      <SafeAreaView style={styles.safeArea}>
+        {/* Add this if you want to be extra safe on Android */}
+        {Platform.OS === 'android' && <View style={{ height: StatusBar.currentHeight }} />}
 
-      <View style={styles.header}>
-        {/* Back Button */}
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <SvgUri
-            uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg'}
-            height={18}
-            width={18}
-          />
-        </TouchableOpacity>
+        <View style={styles.header}>
+          {/* Back Button */}
+          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+            <SvgUri
+              uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg'}
+              height={18}
+              width={18}
+            />
+          </TouchableOpacity>
 
-        {/* Notification Title */}
-        <Text style={styles.headerText}>Notification</Text>
+          {/* Notification Title */}
+          <Text style={styles.headerText}>Notification</Text>
 
-        {/* Clear All Button */}
-        <TouchableOpacity
-          style={styles.notificationButton}
-          onPress={() => { Alert.alert("Clear all the notification data") }}>
-          <Text style={styles.notificationText}>Clear All</Text>
-        </TouchableOpacity>
-      </View>
+          {/* Clear All Button */}
+          <TouchableOpacity
+            style={styles.notificationButton}
+            onPress={() => { Alert.alert("Clear all the notification data") }}>
+            <Text style={styles.notificationText}>Clear All</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* No Notifications */}
-      <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
-        <Text style={{ fontWeight: '700', color: "black", fontSize: 28 }}>
-          No Notifications
-        </Text>
-      </View>
-    </SafeAreaView>
+        {/* No Notifications */}
+        <View style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+          <Text style={{ fontWeight: '700', color: "black", fontSize: 28 }}>
+            No Notifications
+          </Text>
+        </View>
+      </SafeAreaView>
+
+
+    </>
+
   );
 };
 

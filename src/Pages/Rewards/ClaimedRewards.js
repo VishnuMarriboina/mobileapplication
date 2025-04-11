@@ -97,10 +97,13 @@ const ClaimedRewards = () => {  // Removed space in component name
                             data={rewardsData}
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
-                                <TouchableOpacity style={styles.buttonContainer}
-                                    // onPress={() => navigation.goBack()}
-                                    onPress={() => handleItemPress(item)}
+                                <View style={styles.buttonContainer}
+                                // onPress={() => navigation.goBack()}
+                                // onPress={() => handleItemPress(item)}
+                                // onPress={disa}
                                 >
+
+
                                     {/* Left Icon */}
                                     <SvgUri
                                         uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/timeline.svg'}
@@ -114,11 +117,16 @@ const ClaimedRewards = () => {  // Removed space in component name
                                         <Text style={styles.subtitle}>{item.date}</Text>
                                         <View style={{ flexDirection: "row", alignItems: "center" }}>
                                             <Text style={styles.title}>{item.amount}</Text>
-                                            <SvgUri
-                                                uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/info.svg'}
-                                                height={14}
-                                                width={14}
-                                            />
+                                            <TouchableOpacity
+                                                onPress={() => handleItemPress(item)}>
+
+
+                                                <SvgUri
+                                                    uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/info.svg'}
+                                                    height={14}
+                                                    width={14}
+                                                />
+                                            </TouchableOpacity>
                                         </View>
 
                                     </View>
@@ -137,7 +145,7 @@ const ClaimedRewards = () => {  // Removed space in component name
                                         />
                                         <Text style={styles.notificationText}>Claimed</Text>
                                     </View>
-                                </TouchableOpacity>
+                                </View>
 
 
 
@@ -146,23 +154,6 @@ const ClaimedRewards = () => {  // Removed space in component name
 
                             )}
                         />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </View>
 
 
@@ -178,24 +169,24 @@ const ClaimedRewards = () => {  // Removed space in component name
                                             <Text style={styles.headerText}>{selectedItem.amount}</Text>
                                         </View>
 
-                                        <View style={styles.tableHeader}>
+                                        {/* <View style={styles.tableHeader}>
                                             <Text style={styles.headerText}>Order ID's</Text>
                                             <Text style={styles.headerText}>Amount Per Order</Text>
-                                        </View>
+                                        </View> */}
                                         {/* <View style={styles.line} /> */}
                                         <View style={styles.tableRow}>
                                             <Text style={styles.rowText}>{selectedItem.order}</Text>
-                                            <Text style={styles.rowText}>{selectedItem.count}</Text>
+                                            <Text style={styles.rowText}>₹{selectedItem.count}</Text>
                                         </View>
                                         <View style={styles.line} />
                                         <View style={styles.tableRow}>
                                             <Text style={styles.rowText}>{selectedItem.order}</Text>
-                                            <Text style={styles.rowText}>{selectedItem.count}</Text>
+                                            <Text style={styles.rowText}>₹{selectedItem.count}</Text>
                                         </View>
                                         <View style={styles.line} />
                                         <View style={styles.tableRow}>
                                             <Text style={styles.rowText}>{selectedItem.order}</Text>
-                                            <Text style={styles.rowText}>{selectedItem.count}</Text>
+                                            <Text style={styles.rowText}>₹{selectedItem.count}</Text>
                                         </View>
                                     </View>
                                 </>
@@ -244,7 +235,7 @@ const styles = StyleSheet.create({
         // marginHorizontal: 10
         // height: 0,
         // marginTop: 40,
-       
+
     },
     backButton: {
         paddingVertical: 15,
@@ -263,7 +254,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "black",
         fontWeight: "500",
-        paddingLeft:5
+        paddingLeft: 5
     },
 
 
@@ -298,7 +289,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: '#333',
-        color: "#148B7E"
+        color: "#148B7E",
+        marginRight: 10
     },
     subtitle: {
         fontSize: 14,
@@ -338,7 +330,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingVertical: 10,
         borderBottomWidth: 1.52,
-        borderBottomColor: "black",
+        borderBottomColor: "lightgray",
     },
     tableheaderText: {
         fontSize: 16,
@@ -355,9 +347,10 @@ const styles = StyleSheet.create({
     line: {
         height: 1.0,
         // backgroundColor: "#D9D9D9",
-        backgroundColor: BRANDCOLOR,
+        // backgroundColor: BRANDCOLOR,
         // marginHorizontal: 15,
-        // width:SCREEN_WIDTH
+        // width:SCREEN_WIDTH,
+        backgroundColor: "lightgray",
     },
     closeButton: {
         marginTop: 20,

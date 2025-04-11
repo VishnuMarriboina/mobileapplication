@@ -15,28 +15,44 @@ const Header = ({ title }) => {
 
     const dispatch = useDispatch();
     // const status = useSelector((state) => { state.Driverdata })
+    const status = useSelector((state) => state.Driverdata.status);
 
-    const { status } = useSelector((state) => state.Driverdata);
-    console.log(status)
+
+    // const { status } = useSelector((state) => state.Driverdata);
+    console.log("status", status)
+    // const handleToggle = () => {
+    //     setIsToggled((prev) => !prev);
+
+
+    // };
+
     const handleToggle = () => {
+        const newStatus = isToggled ? "Inactive" : "Active";
         setIsToggled((prev) => !prev);
 
-
+        dispatch(updateDriverDetails({
+            ...status,
+            status: newStatus,
+        }));
     };
 
-    if (isToggled) {
 
-        dispatch(updateDriverDetails({
-            status: isToggled,
-        }
-        ));
 
-    } else {
-        dispatch(updateDriverDetails({
-            status: isToggled,
-        }
-        ));
-    }
+
+
+    // if (isToggled) {
+
+    //     dispatch(updateDriverDetails({
+    //         status: isToggled,
+    //     }
+    //     ));
+
+    // } else {
+    //     dispatch(updateDriverDetails({
+    //         status: isToggled,
+    //     }
+    //     ));
+    // }
 
 
     // const [isDrawer, setIsDrawer] = useState(false);
@@ -53,6 +69,8 @@ const Header = ({ title }) => {
     const navigation = useNavigation();
     return (
         <>
+            {/* <StatusBar /> */}
+            <StatusBar backgroundColor={'#1D6B5C'} barStyle="light-content" translucent={true} />
             <SafeAreaView style={{ backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
                 {/* <LinearGradient colors={['#0F5348', '#208575']} style={styles.headerleaner}> */}
                 {title === "Dashboard" ? (
@@ -190,8 +208,8 @@ const styles = StyleSheet.create({
         // justifyContent: "space-between",
         justifyContent: "center",
         backgroundColor: "white",
-        borderWidth: 1,
-        borderColor: "#ccc",
+        // borderWidth: 1,
+        // borderColor: "#ccc",
         // marginHorizontal: 30,
         // marginVertical: 20,
         // position: "relative",
