@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, Button } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { Calendar } from "react-native-calendars";
@@ -32,6 +32,29 @@ const Dashboard = () => {
   const [marked, setMarked] = useState({
     '2025-04-01': { selected: true, marked: true, selectedColor: 'blue' },
   });
+
+
+  useEffect(() => {
+    const today = new Date();
+    const todayDate = today.toISOString().split('T')[0]; // format: 'YYYY-MM-DD'
+    const monthName = today.toLocaleString('en-US', {
+      month: 'long',
+    });
+
+    setMarked({
+      [todayDate]: {
+        selected: true,
+        disableTouchEvent: true,
+        selectedColor: "#4CAF50",
+        marked: false,
+        dotColor: "transparent",
+      },
+    });
+    setSelectedMonth(monthName);
+  }, []);
+
+
+
 
   const onDayPress = (day) => {
     console.log('Selected day', day);

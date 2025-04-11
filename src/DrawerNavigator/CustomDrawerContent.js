@@ -91,8 +91,9 @@ const CustomDrawerContent = () => {
             {/* top of the profile page */}
 
             <SafeAreaView
-            // style={{ backgroundColor: "red", borderRadius: 15 }}
-            // style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}
+                // style={{ backgroundColor: "red", borderRadius: 15 }}
+                style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }, { backgroundColor:"#1D6B5C" }]}
+
             >
 
                 <View style={styles.header}>

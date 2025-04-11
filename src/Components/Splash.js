@@ -4,7 +4,7 @@ import { SvgUri } from 'react-native-svg';
 import { BRANDCOLOR } from '../Utils/Colors';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../Utils/Dimensions';
 
-const CIRCLE_SIZE = 270;
+const CIRCLE_SIZE = 250;
 
 const Splash = () => {
 
@@ -20,7 +20,7 @@ const Splash = () => {
                     />
                 </View>
 
-                <Text style={styles.textFont}>Driver</Text>
+                <Text style={styles.textFont}>Driver App</Text>
 
 
             </View>
@@ -30,11 +30,13 @@ const Splash = () => {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         height: SCREEN_HEIGHT,
         width: SCREEN_WIDTH,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: BRANDCOLOR,
+        // backgroundColor:"red"
     },
     circle: {
         width: CIRCLE_SIZE,
@@ -50,10 +52,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: SCREEN_HEIGHT / 6,
         paddingHorizontal: 20,
-        fontWeight: '900',
-        lineHeight: 30,
-        letterSpacing: 0.75,
+        fontWeight: '600',
+        // lineHeight: 30,
+        // letterSpacing: 0.75,
         color: 'white',
+        // fontFamily:""
+        fontFamily: "fantasy",
     },
 });
 

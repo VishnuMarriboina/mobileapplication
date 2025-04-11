@@ -10,6 +10,14 @@ import StartScreen from './src/Stacks/StartScreen';
 import DriverDetails from './src/Uploads/DriverDetails';
 import DrawerNavigator from './src/DrawerNavigator/CustomDrawerContent';
 import { PersistGate } from 'redux-persist/integration/react';
+import Aadhar from './src/Uploads/Aadhar';
+import Licence from './src/Uploads/Licence';
+import Insurance from './src/Uploads/Insurance';
+import ProfilePhoto from './src/Uploads/ProfilePhoto';
+import Splash from './src/Components/Splash';
+import Login from './src/login/Login';
+import MainStack from './src/Stacks/MainStack';
+// import UploadProfilePhoto from './src/Uploads/ProfilePhoto';
 
 const App = () => {
 
@@ -30,6 +38,10 @@ const App = () => {
                 {/* <Splash /> */}
                 <StartScreen />
                 {/* <DriverDetails /> */}
+                {/* <Aadhar /> */}
+                {/* <Licence /> */}
+                {/* <Insurance /> */}
+                {/* <ProfilePhoto /> */}
                 {/* <DrawerNavigator /> */}
               </BottomSheetModalProvider>
             </GestureHandlerRootView>
