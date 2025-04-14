@@ -118,12 +118,12 @@ const DriverDetails = () => {
           status: statusValue,
         })
       );
-
-      setShowAadhar(true);
+      navigation.navigate('Aadhar');
+      // setShowAadhar(true);
     }
   };
 
-  if (showAadhar) return <Aadhar />;
+  // if (showAadhar) return <Aadhar />;
 
   return (
     <>
@@ -151,9 +151,9 @@ const DriverDetails = () => {
       {/* <View style={{ flex: 1, justifyContent: "center", paddingHorizontal: 20, backgroundColor: "#EFEFF4" }}> */}
 
       <ScrollView
-          contentContainerStyle={{ padding: 20, paddingBottom: 40, backgroundColor: "#EFEFF4" }}
-          keyboardShouldPersistTaps="handled"
-        >
+        contentContainerStyle={{ padding: 20, paddingBottom: 40, backgroundColor: "#EFEFF4" }}
+        keyboardShouldPersistTaps="handled"
+      >
 
 
 
@@ -214,7 +214,7 @@ const DriverDetails = () => {
           </TouchableOpacity>
         </View>
 
-        </ScrollView>
+      </ScrollView>
       {/* </View> */}
     </>
   );

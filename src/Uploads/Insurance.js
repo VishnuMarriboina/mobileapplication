@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Button, Alert, StatusBar } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import ProfilePhoto from './ProfilePhoto';
+import { useNavigation } from '@react-navigation/native';
 // import { launchImageLibrary } from 'react-native-image-picker';
 
 const Insurance = () => {
@@ -9,22 +10,29 @@ const Insurance = () => {
   const [backImage, setBackImage] = useState(null);
 
 
-  const [showProfilePhoto, setShowProfilePhoto] = useState(false);
+  // const [showProfilePhoto, setShowProfilePhoto] = useState(false);
 
+  // const handleCancel = () => {
+  //   navigation.goBack();
+  // }
+
+
+  // const handleContinue = () => {
+
+  //   alert("Insurence submitted successfully!");
+  //   setShowProfilePhoto(true)
+  // }
+  // if (showProfilePhoto) { return <ProfilePhoto /> }
+
+  const navigation = useNavigation();
   const handleCancel = () => {
     navigation.goBack();
-  }
-
+  };
 
   const handleContinue = () => {
-
-    alert("Insurence submitted successfully!");
-    setShowProfilePhoto(true)
-  }
-  if (showProfilePhoto) { return <ProfilePhoto /> }
-
-
-
+    alert("Insurance submitted successfully!");
+    navigation.navigate('ProfilePhoto');
+  };
 
 
   // const pickImage = async (side) => {
@@ -108,7 +116,9 @@ const Insurance = () => {
         </TouchableOpacity>
 
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.cancelBtn} onPress={() => Alert.alert('Cancelled')}>
+          <TouchableOpacity style={styles.cancelBtn}
+           onPress={() => Alert.alert('Cancelled')}
+           >
             <Text style={styles.cancelText}>Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.continueBtn}

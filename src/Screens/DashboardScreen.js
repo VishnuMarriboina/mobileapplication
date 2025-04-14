@@ -451,7 +451,7 @@ import Dashboard from '../Pages/Dashboard/Dashboard'
 const DashboardScreen = () => {
   return (
     <View>
-      <Text>DashboardScreen</Text>
+      {/* <Text>DashboardScreen</Text> */}
 
       <Dashboard />
     </View>

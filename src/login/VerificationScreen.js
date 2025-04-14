@@ -23,24 +23,24 @@ import {
     resendOtp,
     setResendTimer,
     decrementResendTimer,
-    setError
-} from '../../Redux/slices/AuthSlice';
+    setError,
+    setUser
+} from '../Redux/Slices/AuthSlice';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../Utils/Dimensions';
 
 // URL for the back button SVG
 const BACK_BUTTON_SVG = 'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg';
 // URL for the truck SVG
 const TRUCK_SVG_URL = 'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/truck.svg';
 
-const VerificationScreen = () => {
+const VerificationScreen = ({phoneNumber}) => {
     const navigation = useNavigation();
-    const route = useRoute();
+    // const route = useRoute();
     const dispatch = useDispatch();
 
-    const { phoneNumber } = route.params || { phoneNumber: '' };
-    const { loading, error, resendTimer, isAuthenticated, isNewUser } = useSelector(state => state.Auth);
+    // const { phoneNumber } = route.params || { phoneNumber: '' };
+    const { loading, error, resendTimer, isAuthenticated, isNewUser } = useSelector(state => state.Authdata);
 
     const [otp, setOtp] = useState(['', '', '', '', '', '']);
     const [otpError, setOtpError] = useState(false);
@@ -72,15 +72,53 @@ const VerificationScreen = () => {
         }, 100);
     }, []);
 
+
+
+
     // Monitor authentication state
     useEffect(() => {
         if (isAuthenticated) {
-            navigation.reset({
-                index: 0,
-                routes: [{ name: 'Home' }],
-            });
+            // navigation.reset({
+            //     index: 0,
+            //     routes: [{ name: 'Home' }],
+            // });
+
+            dispatch(setUser(true)); //  New  user
         }
     }, [isAuthenticated]);
+
+
+//     const handleLogin = () => {
+//         if (validateInputs()) {
+//             dispatch(loginStart());
+
+//             setTimeout(() => {
+//                 dispatch(loginSuccess());
+//                 console.log("about authentecator", auth.isAuthenticated);
+
+//                 if (username === '123123' && password === '123123') {
+//                     dispatch(setUser(false));  // Existing user
+//                     console.log("user is  existing......", auth.isNewUser)
+//                 } else {
+//                     dispatch(setUser(true)); //  New  user
+//                     console.log("user does not existing......")
+
+//                 }
+
+//                 // setIsLoggedIn(true);
+//             }, 500);
+//         }
+//     };
+
+
+
+
+
+
+
+
+
+
 
     // Display any errors
     useEffect(() => {

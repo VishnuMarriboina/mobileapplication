@@ -240,6 +240,7 @@ import DriverProfile from './DriverProfile';
 import { BRANDCOLOR } from '../Utils/Colors';
 import { SCREEN_HEIGHT } from '../Utils/Dimensions';
 // import { launchImageLibrary } from 'react-native-image-picker';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfilePhoto = () => {
 
@@ -275,19 +276,35 @@ const ProfilePhoto = () => {
     setProfileImage(null);
   };
 
-  const [showDriverProfile, setShowDriverProfile] = useState(false);
+  // const [showDriverProfile, setShowDriverProfile] = useState(false);
 
+  // const handleCancel = () => {
+  //   navigation.goBack();
+  // }
+
+
+
+  // const handleContinue = () => {
+  //   alert("ProfilePhoto submitted successfully!");
+  //   setShowDriverProfile(true)
+  // }
+  // if (showDriverProfile) { return <DriverProfile /> }
+
+
+  const navigation = useNavigation();
   const handleCancel = () => {
     navigation.goBack();
-  }
-
-
+  };
 
   const handleContinue = () => {
-    alert("ProfilePhoto submitted successfully!");
-    setShowDriverProfile(true)
-  }
-  if (showDriverProfile) { return <DriverProfile /> }
+    alert("Insurance submitted successfully!");
+    navigation.navigate('DriverProfile');
+  };
+
+
+
+
+
 
 
   return (

@@ -14,6 +14,7 @@ const initialState = {
   resendCount: 0,
   lastResendTime: null,
   resendTimer: 0,
+  isNewUser: false, // to comes from the backend exixting or new user..
 };
 
 const authSlice = createSlice({
@@ -38,7 +39,17 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+      state.isNewUser = action.payload;
+
     },
+
+    // setUser: (state, action) => {
+    //                 state.loading = false;
+    //                 state.isNewUser = action.payload;
+    //                 state.error = null;
+    //             },
+
+
     setResendCount: (state, action) => {
       state.resendCount = action.payload;
     },

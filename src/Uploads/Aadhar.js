@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Button, Alert, StatusBar } from 'react-native';
 import { SvgUri } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 import Licence from './Licence';
 // import { launchImageLibrary } from 'react-native-image-picker';
 
@@ -11,29 +12,37 @@ const Aadhar = () => {
 
 
 
-  const [showLicence, setShowLicence] = useState(false); // Control rendering
+  // const [showLicence, setShowLicence] = useState(false); // Control rendering
 
+  // const handleCancel = () => {
+  //   navigation.goBack();
+  // }
+
+
+  // const handleContinue = () => {
+
+  //   // navigation.navigate("Licence");
+  //   // return <Licence />
+  //   // alert("Aadhar submitted successfully!");
+  //   Alert.alert('Success', 'You can proceed!');
+  //   // alert('Cancelled')
+  //   setShowLicence(true)
+
+  // }
+
+  // if (showLicence) {
+  //   return <Licence />
+  // }
+
+  const navigation = useNavigation();
   const handleCancel = () => {
     navigation.goBack();
-  }
-
+  };
 
   const handleContinue = () => {
-
-    // navigation.navigate("Licence");
-    // return <Licence />
-    // alert("Aadhar submitted successfully!");
-    Alert.alert('Success', 'You can proceed!');
-    // alert('Cancelled')
-    setShowLicence(true)
-
-  }
-
-  if (showLicence) {
-    return <Licence />
-  }
-
-
+    alert("Insurance submitted successfully!");
+    navigation.navigate('Licence');
+  };
 
 
 

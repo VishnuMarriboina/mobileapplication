@@ -15,16 +15,21 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendOtp , checkExistingSession, setError} from '../Redux/Slices/AuthSlice';
-const SCREEN_WIDTH = Dimensions.get('window').width;
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+// import { sendOtp, checkExistingSession, setError } from '../Redux/Slices/AuthSlice';
 
+import { sendOtp,checkExistingSession,setError } from '../Redux/Slices/AuthSlice';
+// const SCREEN_WIDTH = Dimensions.get('window').width;
+// const SCREEN_HEIGHT = Dimensions.get('window').height;
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../Utils/Dimensions';
+import VerificationScreen from './VerificationScreen';
 const Login = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const { loading, error, isAuthenticated } = useSelector(state => state.Authdata);
 
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [showValidationScreen, setShowValidationScreen] = useState(false);
+    const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneError, setPhoneError] = useState('');
 
     // Check for existing session on component mount
@@ -79,30 +84,67 @@ const Login = () => {
         return true;
     };
 
+
     const handleSendVerification = async () => {
-        if (!validatePhoneNumber(phoneNumber)) {
-            return;
-        }
+        if (!validatePhoneNumber(phoneNumber)) return;
 
         try {
-            // Format phone number with country code
-            const formattedPhoneNumber = `+91${phoneNumber}`;
-            console.log('Sending OTP to:', formattedPhoneNumber);
+            const formatted = `+91${phoneNumber}`;
+            console.log('Sending OTP to:', formatted);
 
-            // Send OTP
-            const result = await dispatch(sendOtp(formattedPhoneNumber));
+            const result = await dispatch(sendOtp(formatted));
 
             if (result) {
-                // Navigate to verification screen
-                navigation.navigate('Verification', {
-                    phoneNumber: formattedPhoneNumber,
-                });
+                setFormattedPhoneNumber(formatted);
+                setShowValidationScreen(true);
             }
         } catch (error) {
             console.error('Send OTP error:', error);
-            // Error is already handled in the AuthSlice reducer
         }
     };
+
+    if (showValidationScreen) {
+        return <VerificationScreen phoneNumber={formattedPhoneNumber} />;
+    }
+
+
+
+
+    // const handleSendVerification = async () => {
+    //     if (!validatePhoneNumber(phoneNumber)) {
+    //         return;
+    //     }
+
+    //     try {
+    //         // Format phone number with country code
+    //         const formattedPhoneNumber = `+91${phoneNumber}`;
+    //         console.log('Sending OTP to:', formattedPhoneNumber);
+
+    //         // Send OTP
+    //         const result = await dispatch(sendOtp(formattedPhoneNumber));
+
+    //         if (result) {
+    //             // Navigate to verification screen
+    //             navigation.navigate('Verification', {
+    //                 phoneNumber: formattedPhoneNumber,
+    //             });
+    //             setShowValidationScreen(true);
+
+    //         }
+    //     } catch (error) {
+    //         console.error('Send OTP error:', error);
+    //         // Error is already handled in the AuthSlice reducer
+    //     }
+    // };
+
+
+    // if (showValidationScreen) {
+    //     return <VerificationScreen phoneNumber={formattedPhoneNumber} />;
+    //   }
+
+
+
+
 
     return (
         <SafeAreaView style={styles.container}>

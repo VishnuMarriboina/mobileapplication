@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, Button, Alert, StatusBar } from 'react-native';
 import { SvgUri } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 import Insurance from './Insurance';
 // import { launchImageLibrary } from 'react-native-image-picker';
 
@@ -11,28 +12,36 @@ const Licence = () => {
 
 
 
-  const [showLicence, setShowLicence] = useState(false); // 🔁 Control rendering
+  // const [showLicence, setShowLicence] = useState(false); // 🔁 Control rendering
 
+  // const handleCancel = () => {
+  //   navigation.goBack();
+  // }
+
+
+  // const handleContinue = () => {
+
+  //   alert("Insurence submitted successfully!");
+
+  //   // navigation.navigate("Insurance"); // Navigate to the Insurance screen
+
+  //   // return <Insurance />
+  //   setShowLicence(true)
+
+  // }
+  // if (showLicence) {
+  //   return <Insurance />
+  // }
+
+  const navigation = useNavigation();
   const handleCancel = () => {
     navigation.goBack();
-  }
-
+  };
 
   const handleContinue = () => {
-
-    alert("Insurence submitted successfully!");
-
-    // navigation.navigate("Insurance"); // Navigate to the Insurance screen
-
-    // return <Insurance />
-    setShowLicence(true)
-
-  }
-  if (showLicence) {
-    return <Insurance />
-  }
-
-
+    alert("Insurance submitted successfully!");
+    navigation.navigate('Insurance');
+  };
 
 
 
