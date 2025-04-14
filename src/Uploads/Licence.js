@@ -83,7 +83,9 @@ const Licence = () => {
           { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
         ]}
       >
-        <TouchableOpacity style={styles.backButton}>
+        <TouchableOpacity style={styles.backButton}
+        onPress={()=>{navigation.goBack();}}
+        >
           <SvgUri
             uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg"}
             height={18}
@@ -137,7 +139,9 @@ const Licence = () => {
         </TouchableOpacity>
 
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.cancelBtn} onPress={() => Alert.alert('Cancelled')}>
+          <TouchableOpacity style={styles.cancelBtn} 
+          onPress={() => Alert.alert('Cancelled')}
+          >
             <Text style={styles.cancelText}>Cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.continueBtn}

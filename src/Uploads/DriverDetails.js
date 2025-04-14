@@ -151,7 +151,7 @@ const DriverDetails = () => {
       {/* <View style={{ flex: 1, justifyContent: "center", paddingHorizontal: 20, backgroundColor: "#EFEFF4" }}> */}
 
       <ScrollView
-        contentContainerStyle={{ padding: 20, paddingBottom: 40, backgroundColor: "#EFEFF4" }}
+        contentContainerStyle={{ padding: 20, paddingBottom: 40, backgroundColor: "#EFEFF4", flex: 1 }}
         keyboardShouldPersistTaps="handled"
       >
 
