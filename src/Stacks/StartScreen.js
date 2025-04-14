@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Splash from '../Components/Splash'
 import Login from '../login/Login'
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../Redux/Slices/AuthSlice'
-import { DriverProfile, MainStack } from './Export';
-// import DriverProfile from '../Uploads/DriverProfile'
-// import MainStack from './MainStack';
-import DriverDetails from '../Uploads/DriverDetails';
 import DrawerScreen from './Drawer';
+import UploadDetails from '../Uploads/UploadDetails';
 const StartScreen = () => {
     const [isLoading, setIsLoading] = useState(true); // Correct variable name
     const dispatch = useDispatch();
@@ -46,7 +42,7 @@ const StartScreen = () => {
             {/* {isLoading ? <Splash /> : <Login /> : !isNewUser ? <MainStack /> :<DriverDetails />} */}
 
             {
-                isLoading ? (<Splash />) : !isAuthenticated ? (<Login />) : isNewUser ? <DriverDetails /> : <DrawerScreen />
+                isLoading ? (<Splash />) : !isAuthenticated ? (<Login />) : isNewUser ? <UploadDetails /> : <DrawerScreen />
             }
 
 

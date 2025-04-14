@@ -10,7 +10,7 @@ export { default as Footer } from '../footer/Footer'
 
 
 // Common Screens
-export { default as DashBoard } from '../Screens/Dashboard'
+export { default as DashboardScreen } from '../Screens/DashboardScreen'
 export { default as Trips } from '../Screens/Trips'
 export { default as Rewards } from '../Screens/Rewards'
 

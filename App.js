@@ -18,6 +18,11 @@ import Splash from './src/Components/Splash';
 import Login from './src/login/Login';
 import MainStack from './src/Stacks/MainStack';
 // import UploadProfilePhoto from './src/Uploads/ProfilePhoto';
+import amplifyconfig from './amplifyconfiguration.json';
+
+import {Amplify} from 'aws-amplify';
+
+Amplify.configure(amplifyconfig)
 
 const App = () => {
 

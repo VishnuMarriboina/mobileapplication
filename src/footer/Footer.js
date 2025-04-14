@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Keyboard, StyleSheet, View, TouchableWithoutFeedback } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Trips from "../Screens/Trips";
-import Dashboard from "../Screens/Dashboard";
+import DashboardScreen from "../Screens/DashboardScreen";
 import Rewards from "../Screens/Rewards";
 import Header from "../Components/Header";
 import { SvgUri } from "react-native-svg";
-import {
-    Keyboard,
-    StyleSheet,
-    View,
-    TouchableWithoutFeedback,
-    Platform,
-    Pressable,
-} from "react-native";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../Utils/Dimensions";
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from "../Utils/Dimensions";
+
+
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +41,7 @@ const Footer = () => {
                 tabBarStyle: isKeyboardVisible
                     ? { display: "none" }
                     : {
-                        // height: SCREEN_HEIGHT * 0.09,
+                        height: SCREEN_HEIGHT * 0.09,
                         backgroundColor: '#282A37',
                         borderTopWidth: 0,
                         borderTopLeftRadius: 30,
@@ -92,7 +87,7 @@ const Footer = () => {
 
             <Tab.Screen
                 name="Dashboard"
-                component={Dashboard}
+                component={DashboardScreen}
                 options={{
                     tabBarHideOnKeyboard: true,
                     title: '',
@@ -159,6 +154,16 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 });
+
+
+
+
+
+
+
+
+
+
 
 
 

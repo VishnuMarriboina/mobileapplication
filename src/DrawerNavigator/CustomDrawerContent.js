@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SvgUri } from 'react-native-svg';
 import BarCard from '../Components/BarCard';
 import { SCREEN_WIDTH } from '../Utils/Dimensions';
-import { logout } from '../Redux/Slices/AuthSlice';
+import { logout,resetAuth } from '../Redux/Slices/AuthSlice';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 const CustomDrawerContent = () => {
@@ -34,7 +34,7 @@ const CustomDrawerContent = () => {
                 {
                     text: "Logout",
                     onPress: async () => {
-                        dispatch(logout());
+                        dispatch(resetAuth());
                         navigation.replace('Login');
                     },
                 },
