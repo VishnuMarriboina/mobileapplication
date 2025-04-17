@@ -169,11 +169,6 @@ const ClaimedRewards = () => {  // Removed space in component name
                                             <Text style={styles.headerText}>{selectedItem.amount}</Text>
                                         </View>
 
-                                        {/* <View style={styles.tableHeader}>
-                                            <Text style={styles.headerText}>Order ID's</Text>
-                                            <Text style={styles.headerText}>Amount Per Order</Text>
-                                        </View> */}
-                                        {/* <View style={styles.line} /> */}
                                         <View style={styles.tableRow}>
                                             <Text style={styles.rowText}>{selectedItem.order}</Text>
                                             <Text style={styles.rowText}>₹{selectedItem.count}</Text>
@@ -196,6 +191,9 @@ const ClaimedRewards = () => {  // Removed space in component name
                                 <Text style={styles.closeText}>Close</Text>
                             </TouchableOpacity>
                         </View>
+
+
+                        {/* <Text>hellow</Text> */}
                     </CustomModal>
 
 

@@ -4,6 +4,8 @@ import { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
 import * as DocumentPicker from '@react-native-documents/picker';
+import CustomModal from '../Components/CustomModal';
+import { SCREEN_WIDTH } from '../Utils/Dimensions';
 
 const Aadhar = () => {
   const [frontImage, setFrontImage] = useState(null);
@@ -193,14 +195,18 @@ const Aadhar = () => {
       </View>
 
       {/* Upload Options Modal */}
-      <Modal
+      {/* <Modal
         visible={optionModalVisible}
         transparent
         animationType="slide"
         onRequestClose={() => setOptionModalVisible(false)}
-      >
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalBox}>
+      > */}
+
+<CustomModal isVisible={optionModalVisible} onClose={() => setOptionModalVisible(false)}>
+<View style={styles.modalContainer}>
+
+        {/* <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}> */}
             <TouchableOpacity onPress={handleImageFromCamera}>
               <Text style={styles.modalText}>Take from Camera</Text>
             </TouchableOpacity>
@@ -213,9 +219,11 @@ const Aadhar = () => {
             <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
               <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
             </TouchableOpacity>
-          </View>
+          {/* </View>
+        </View> */}
         </View>
-      </Modal>
+        </CustomModal>
+      {/* </Modal> */}
     </>
   );
 };
@@ -312,6 +320,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
+   modalContainer: {
+      // flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "white",
+      padding: 20,
+      borderRadius: 10,
+      // width: "90%",
+      width: SCREEN_WIDTH,
+      alignSelf: "center",
+      // backgroundColor: BRANDCOLOR
+    },
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',

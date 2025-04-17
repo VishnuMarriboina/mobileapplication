@@ -4,6 +4,8 @@ import { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
 import * as DocumentPicker from '@react-native-documents/picker';
+import CustomModal from '../Components/CustomModal';
+import { SCREEN_WIDTH } from '../Utils/Dimensions';
 
 const Aadhar = () => {
   const [frontImage, setFrontImage] = useState(null);
@@ -200,8 +202,9 @@ const Aadhar = () => {
         onRequestClose={() => setOptionModalVisible(false)}
       > */}
 
-      <Modal
+      {/* <Modal
         visible={optionModalVisible}
+        transparent
         animationIn="zoomIn"
         animationOut="zoomOut"
         animationInTiming={500}
@@ -211,27 +214,35 @@ const Aadhar = () => {
         onRequestClose={() => setOptionModalVisible(false)}
         // onBackdropPress={onClose} // Close on tapping outside
         style={styles.modal} // Fullscreen Modal
-      >
+      > */}
 
 
+      <CustomModal isVisible={optionModalVisible} onClose={() => setOptionModalVisible(false)}>
+        <View style={styles.modalContainer}>
 
-        <View style={styles.modalOverlay}>
-          <View style={styles.modalBox}>
-            <TouchableOpacity onPress={handleImageFromCamera}>
-              <Text style={styles.modalText}>Take from Camera</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleImageFromGallery}>
-              <Text style={styles.modalText}>Choose from Gallery</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handlePickDocument}>
-              <Text style={styles.modalText}>Upload PDF</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
-              <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
+          {/* <View style={styles.modalOverlay}> */}
+            {/* <View style={styles.modalBox}> */}
+              <TouchableOpacity onPress={handleImageFromCamera}>
+                <Text style={styles.modalText}>Take from Camera</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handleImageFromGallery}>
+                <Text style={styles.modalText}>Choose from Gallery</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={handlePickDocument}>
+                <Text style={styles.modalText}>Upload PDF</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
+                <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
+              </TouchableOpacity>
+            </View>
+
+{/* <View><Text>Hellow</Text></View> */}
+
+
+          {/* </View> */}
+        {/* </View> */}
+      </CustomModal>
+      {/* </Modal> */}
     </>
   );
 };
@@ -327,6 +338,18 @@ const styles = StyleSheet.create({
   continueText: {
     color: '#fff',
     fontWeight: '600',
+  },
+  modalContainer: {
+    // flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    // width: "90%",
+    width: SCREEN_WIDTH,
+    alignSelf: "center",
+    // backgroundColor: BRANDCOLOR
   },
   modal: {
     flex: 1,
