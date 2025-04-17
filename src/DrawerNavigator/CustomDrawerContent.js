@@ -1,19 +1,12 @@
-// import { useNavigation } from '@react-navigation/native';
-// import React from 'react';
-// import { View, Text, TouchableOpacity, StyleSheet, Platform, StatusBar } from 'react-native';
-// import Profile from '../Profile';
-// import { ScrollView } from 'react-native-gesture-handler';
-// import { SvgUri } from 'react-native-svg';
-
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Alert, } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, Alert,Image } from 'react-native'
 import React, { useState } from 'react'
 import { BRANDCOLOR } from '../Utils/Colors'
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { SvgUri } from 'react-native-svg';
+import {  SvgUri } from 'react-native-svg';
 import BarCard from '../Components/BarCard';
 import { SCREEN_WIDTH } from '../Utils/Dimensions';
-import { logout,resetAuth } from '../Redux/Slices/AuthSlice';
+import { logout, resetAuth } from '../Redux/Slices/AuthSlice';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native-gesture-handler';
 const CustomDrawerContent = () => {
@@ -44,47 +37,6 @@ const CustomDrawerContent = () => {
 
 
 
-    // return (
-    //     <ScrollView style={styles.container}>
-    //     {/* <SafeAreaView style={[styles.container, 
-    // {
-    //         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
-    //     }]}> */}
-
-    //         {/* Navigate to Home tab */}
-    //         {/* <TouchableOpacity
-    //             onPress={() => navigation.navigate('Footer', { screen: 'DashBoard' })}
-    //             style={styles.drawerItem}
-    //         >
-    //             <Text style={styles.drawerLabel}>Home</Text>
-    //         </TouchableOpacity> */}
-
-    //         {/* Navigate to Trips tab */}
-    //         {/* <TouchableOpacity
-    //             onPress={() => navigation.navigate('Footer', { screen: 'Trips' })}
-    //             style={styles.drawerItem}
-    //         >
-    //             <Text style={styles.drawerLabel}>My Trips</Text>
-    //         </TouchableOpacity> */}
-
-    //         {/* Navigate to Profile tab */}
-    //         {/* <TouchableOpacity
-    //             // onPress={() => navigation.navigate('Footer', { screen: 'Profile' })}
-    //             // onPress={navigation.navigate("Profile")}
-    //             onPress={() => navigation.navigate("Profile")}
-
-    //             style={styles.drawerItem}
-    //         >
-    //             <Text style={styles.drawerLabel}>Profile</Text>
-    //         </TouchableOpacity> */}
-
-    //         <Profile />
-    //         {/* <Profile /> */}
-    //     {/* </SafeAreaView> */}
-    //      </ScrollView>
-    // );
-
-
     return (
         <>
 
@@ -92,22 +44,37 @@ const CustomDrawerContent = () => {
 
             <SafeAreaView
                 // style={{ backgroundColor: "red", borderRadius: 15 }}
-                style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }, { backgroundColor:"#1D6B5C" }]}
+                style={[{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }, { backgroundColor: "#1D6B5C", flex: 1 }]}
 
             >
 
                 <View style={styles.header}>
                     <View>
-                        <View style={styles.profileImageContainerN}>
+                        <TouchableOpacity style={styles.profileImageContainerN}
+                        
+                        onPress={()=>{
+                            navigation.navigate("DriverProfile")
+                        }}
+                        >
+
+{/* onPress={() => navigation.navigate("Footer", { screen: "DriverProfile" })} > */}
                             <View style={styles.innerImageContainerN}>
 
-                                <SvgUri
+                                {/* <SvgUri
                                     uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Consumer_App/profilenavbar.svg'}
                                     height={42}
                                     width={42}
+                                /> */}
+
+
+                                <Image
+                                    source={{ uri: 'https://randomuser.me/api/portraits/men/32.jpg' }}
+                                    style={styles.avatar}
                                 />
+
+
                             </View>
-                            <TouchableOpacity
+                            {/* <TouchableOpacity
                                 style={styles.cameraIconN}
                                 onPress={() => Alert.alert("edit profile!")}
                                 activeOpacity={0.9}>
@@ -116,8 +83,26 @@ const CustomDrawerContent = () => {
                                     height={42}
                                     width={42}
                                 />
-                            </TouchableOpacity>
-                        </View>
+                            </TouchableOpacity> */}
+                        </TouchableOpacity>
+
+ {/* <View >
+            <View style={styles.avatarWrapper}>
+              <Image source={{ uri: imageUri }} style={styles.avatar} />
+              <TouchableOpacity style={styles.cameraIconWrapper}
+               onPress={()=>{navigation.navigate("DriverProfile")}}
+               >
+                <SvgUri
+                  uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg"
+                  width={20}
+                  height={20}
+                />
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.profileName}>Ajith Singh</Text>
+          </View> */}
+
+
 
                         {/* name and status from the redux tool kit */}
                         <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
@@ -275,10 +260,6 @@ const CustomDrawerContent = () => {
 export default CustomDrawerContent;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        // padding: 20,
-    },
     drawerItem: {
         marginVertical: 10,
         backgroundColor: "red",
@@ -291,7 +272,7 @@ const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 15,
         backgroundColor: "transparent", // Light grey background
-        // flex: 1,
+        flex: 1,
         paddingVertical: 15,
         // backgroundColor: "blue",
         // paddingBottom:50,
@@ -311,6 +292,7 @@ const styles = StyleSheet.create({
         // backgroundColor: BRANDCOLOR,
         paddingHorizontal: 10,
         // paddingTop: 10, 
+        // flex:1
     },
     cameraIconN: {
         position: 'absolute',
@@ -331,6 +313,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
+        // paddingHorizontal: 50
     },
     innerImageContainerN: {
         borderColor: "white",
@@ -341,8 +324,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        // backgroundColor: BRANDCOLOR
-        backgroundColor: "white"
+        backgroundColor: BRANDCOLOR
+        // backgroundColor: "white",
+    },
+    avatar: {
+        width: 125,
+        height:125,
+        borderRadius: 75,
     },
 
     // code for new 
@@ -398,4 +386,53 @@ const styles = StyleSheet.create({
         marginRight: 8,
     }
 });
+
+
+
+
+
+
+
+
+
+
+    // return (
+    //     <ScrollView style={styles.container}>
+    //     {/* <SafeAreaView style={[styles.container, 
+    // {
+    //         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    //     }]}> */}
+
+    //         {/* Navigate to Home tab */}
+    //         {/* <TouchableOpacity
+    //             onPress={() => navigation.navigate('Footer', { screen: 'DashBoard' })}
+    //             style={styles.drawerItem}
+    //         >
+    //             <Text style={styles.drawerLabel}>Home</Text>
+    //         </TouchableOpacity> */}
+
+    //         {/* Navigate to Trips tab */}
+    //         {/* <TouchableOpacity
+    //             onPress={() => navigation.navigate('Footer', { screen: 'Trips' })}
+    //             style={styles.drawerItem}
+    //         >
+    //             <Text style={styles.drawerLabel}>My Trips</Text>
+    //         </TouchableOpacity> */}
+
+    //         {/* Navigate to Profile tab */}
+    //         {/* <TouchableOpacity
+    //             // onPress={() => navigation.navigate('Footer', { screen: 'Profile' })}
+    //             // onPress={navigation.navigate("Profile")}
+    //             onPress={() => navigation.navigate("Profile")}
+
+    //             style={styles.drawerItem}
+    //         >
+    //             <Text style={styles.drawerLabel}>Profile</Text>
+    //         </TouchableOpacity> */}
+
+    //         <Profile />
+    //         {/* <Profile /> */}
+    //     {/* </SafeAreaView> */}
+    //      </ScrollView>
+    // );
 

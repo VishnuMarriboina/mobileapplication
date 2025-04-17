@@ -1,16 +1,18 @@
 
-import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Platform, StatusBar } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Platform, StatusBar, Modal } from 'react-native';
 import { SvgUri } from 'react-native-svg';
-// import { SCREEN_HEIGHT } from '../Utils/Dimensions'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from '../Redux/Slices/AuthSlice'
-// import { Ionicons, MaterialIcons, Entypo, Feather } from '@expo/vector-icons';
+
 
 const DriverProfile = () => {
 
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [viewImageModal, setViewImageModal] = useState(false);
+  const [imageUri, setImageUri] = useState('https://randomuser.me/api/portraits/men/32.jpg');
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.Authdata);
@@ -21,15 +23,24 @@ const DriverProfile = () => {
   }
 
 
-  const handleSubmit = () => {
-    // navigation.navigate("Footer"); // Navigate to the Insurance screen
 
-    // navigation.navigate("Footer")
+
+  
+
+  const handleSubmit = () => {
     dispatch(setUser(false));
     console.log("new driver was created", auth.isNewUser);
   }
 
 
+
+
+  const openOptions = () => setModalVisible(true);
+
+  const handleEdit = () => {
+    setModalVisible(false);
+    navigation.navigate('ProfilePhoto');
+  };
 
 
 
@@ -46,10 +57,10 @@ const DriverProfile = () => {
       >
         <TouchableOpacity style={styles.backButton}
 
-        onPress={()=>{
-          navigation.goBack();
-        }}
-        
+          onPress={() => {
+            navigation.goBack();
+          }}
+
         >
           <SvgUri
             uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg"}
@@ -61,11 +72,11 @@ const DriverProfile = () => {
         <Text style={styles.headerText}>Driver Profile</Text>
 
         <TouchableOpacity>
-          <SvgUri
+          {/* <SvgUri
             uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/share.svg"
             width={20}
             height={20}
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 
@@ -99,18 +110,101 @@ const DriverProfile = () => {
 
         {/* Profile Image & Name */}
         <View style={styles.profileCard}>
-          <Image
-            source={{ uri: 'https://randomuser.me/api/portraits/men/32.jpg' }}
-            style={styles.avatar}
-          />
-          <View style={{ flexDirection: "row", marginTop: 5 }}>
 
+          <View >
+            <View style={styles.avatarWrapper}>
+              <Image source={{ uri: imageUri }} style={styles.avatar} />
+              <TouchableOpacity style={styles.cameraIconWrapper} onPress={openOptions}>
+                <SvgUri
+                  uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg"
+                  width={20}
+                  height={20}
+                />
+              </TouchableOpacity>
+            </View>
+            {/* <Text style={styles.profileName}>Ajith Singh</Text> */}
+          </View>
 
+          <View style={{ marginTop: 5 }}>
             <Text style={styles.profileName}>Ajith Singh</Text>
+          </View>
+
+          {/* Popup Modal */}
+          <Modal
+            transparent
+            visible={modalVisible}
+            animationType="fade"
+            onRequestClose={() => setModalVisible(false)}
+          >
             <TouchableOpacity
-              style={styles.editIcon}
+              style={styles.overlay}
+              activeOpacity={1}
+              onPressOut={() => setModalVisible(false)}
             >
-              {/* <Feather name="edit-2" size={14} color="#000" /> */}
+              <View style={styles.optionBox}>
+                <TouchableOpacity onPress={() => {
+                  setModalVisible(false);
+                  setViewImageModal(true);
+                }}>
+                  <Text style={styles.optionText}>View Image</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleEdit}>
+                  <Text style={styles.optionText}>Edit Image</Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+          </Modal>
+
+          {/* View Image Fullscreen Modal */}
+          <Modal
+            visible={viewImageModal}
+            transparent
+            animationType="fade"
+            onRequestClose={() => setViewImageModal(false)}
+          >
+            <TouchableOpacity
+              style={styles.fullScreenOverlay}
+              onPress={() => setViewImageModal(false)}
+            >
+              <Image source={{ uri: imageUri }} style={styles.fullImage} />
+            </TouchableOpacity>
+          </Modal>
+
+
+        </View>
+
+
+        {/* View Image Modal */}
+        <Modal
+          visible={viewImageModal}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setViewImageModal(false)}
+        >
+          <TouchableOpacity
+            style={styles.fullScreenOverlay}
+            onPress={() => setViewImageModal(false)}
+          >
+            <Image source={{ uri: imageUri }} style={styles.fullImage} />
+          </TouchableOpacity>
+        </Modal>
+
+
+
+
+
+
+
+
+
+
+        {/* Contact Information */}
+
+        <View style={styles.infoCard}>
+          {/* Contact Information Header */}
+          <View style={styles.cardHeader}>
+            <Text style={styles.cardTitle}>Contact Information</Text>
+            <TouchableOpacity onPress={() => { navigation.navigate("DriverDetails") }}>
               <SvgUri
                 uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/edit.svg"
                 width={24}
@@ -118,78 +212,64 @@ const DriverProfile = () => {
               />
             </TouchableOpacity>
           </View>
-        </View>
 
-
-
-
-
-        {/* Contact Information */}
-        <View style={styles.infoCard}>
-          <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Contact Information</Text>
-            {/* <Feather name="edit-2" size={14} color="#000" /> */}
-            <SvgUri
-              uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/edit.svg"
-              width={24}
-              height={24}
-            />
-          </View>
+          {/* Personal Number */}
           <View style={styles.infoRow}>
-            {/* <Ionicons name="call" size={18} color="#0A9D7A" /> */}
             <SvgUri
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/phoneblue.svg"
               width={24}
               height={24}
             />
-
-
-            <Text style={styles.infoText}>+91 9573 9573 95</Text>
+            <View style={styles.infoColumn}>
+              <Text style={styles.label}>Personal Number</Text>
+              <Text style={styles.infoText}>+91 9573 9573 95</Text>
+            </View>
           </View>
-          <View style={styles.infoRow}>
-            {/* <Entypo name="warning" size={18} color="#F44336" /> */}
 
+          {/* Emergency Number */}
+          <View style={styles.infoRow}>
             <SvgUri
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/emergencyred.svg"
               width={24}
               height={24}
             />
-
-            <Text style={styles.infoText}>+91 9573 9573 85</Text>
+            <View style={styles.infoColumn}>
+              <Text style={styles.label}>Emergency Number</Text>
+              <Text style={styles.infoText}>+91 9573 9573 85</Text>
+            </View>
           </View>
-        </View>
 
-        {/* Personal Information */}
-        <View style={styles.infoCard}>
+          {/* Personal Information Header */}
+          <View style={{ paddingVertical: 15 }} />
           <View style={styles.cardHeader}>
             <Text style={styles.cardTitle}>Personal Information</Text>
-            {/* <Feather name="edit-2" size={14} color="#000" /> */}
-            <SvgUri
-              uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/edit.svg"
-              width={24}
-              height={24}
-            />
           </View>
-          <View style={styles.infoRow}>
-            {/* <MaterialIcons name="bloodtype" size={18} color="#F44336" /> */}
 
+          {/* Blood Group */}
+          <View style={styles.infoRow}>
             <SvgUri
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/bloodgroup.svg"
               width={24}
               height={24}
             />
-
-
-            <Text style={styles.infoText}>O Positive</Text>
+            <View style={styles.infoColumn}>
+              <Text style={styles.label}>Blood Group</Text>
+              <Text style={styles.infoText}>O Positive</Text>
+            </View>
           </View>
+
+          {/* Address */}
           <View style={styles.infoRow}>
-            {/* <Entypo name="location-pin" size={18} color="#4CAF50" /> */}
             <SvgUri
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/locationgreen.svg"
               width={24}
               height={24}
             />
-            <Text style={styles.infoText}>Permanent Address</Text>
+            <View style={styles.infoColumn}>
+              <Text style={styles.label}>Address</Text>
+              <Text style={styles.infoText}>Flat No. 202, Green Residency
+                Road No. 12, Banjara Hills, 500034</Text>
+            </View>
           </View>
         </View>
 
@@ -211,6 +291,19 @@ const DriverProfile = () => {
               <View style={{ marginLeft: 10 }}>
                 <Text style={styles.docTitle}>{doc.name}</Text>
                 <Text style={styles.docDate}>Uploaded on {doc.date}</Text>
+              </View>
+
+              <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", paddingHorizontal: 15 }}>
+                <SvgUri
+                  uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/eye.svg`}
+                  width={24}
+                  height={24}
+                />
+                <SvgUri
+                  uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg`}
+                // width={24}
+                // height={24}
+                />
               </View>
             </View>
           ))}
@@ -286,28 +379,55 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
     position: 'relative',
+    // backgroundColor: "red"
+  },
+  avatarContainer: {
+    position: 'relative',
+    width: 100,
+    height: 100,
+  },
+  avatarWrapper: {
+    position: 'relative',
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    // overflow: 'hidden',
+    overflow: 'visible',
   },
   avatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
+    width: '100%',
+    height: '100%',
+    borderRadius: 60,
   },
+  cameraIconWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#D9D9D9',
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: '#fff',
+    overflow: 'visible',
+    // borderColor:"black"
+  },
+  profileName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 12,
+  },
+
+
   profileName: {
     fontSize: 16,
     fontWeight: '600',
     // marginTop: 8,
     marginHorizontal: 5
   },
-  editIcon: {
-    // position: 'absolute',
-    // right: 0,
-    // top: 50,
-    // backgroundColor: '#eee',
-    // padding: 5,
-    // borderRadius: 20,
-    // backgroundColor:"red",
-    marginTop: -3
-  },
+
   infoCard: {
     backgroundColor: '#F8F8F8',
     padding: 15,
@@ -318,6 +438,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+    // backgroundColor:"red",
+    alignItems: "center"
   },
   cardTitle: {
     fontWeight: '600',
@@ -327,9 +449,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
+    backgroundColor: "white",
+    padding: 5,
+    paddingVertical: 10,
+    borderRadius: 5
   },
+  infoColumn: {
+    marginLeft: 12,
+    flex: 1,
+  },
+
+  label: {
+    fontSize: 12,
+    color: '#888',
+    marginBottom: 2,
+  },
+
   infoText: {
-    marginLeft: 10,
+    // marginLeft: 10,
     fontSize: 14,
     color: '#333',
   },
@@ -337,6 +474,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 12,
+    // justifyContent:"space-evenly"
+    backgroundColor: "white",
+    padding: 5,
+    paddingVertical: 10,
+    borderRadius: 5
   },
   docTitle: {
     fontSize: 14,
@@ -373,6 +515,36 @@ const styles = StyleSheet.create({
   continueText: {
     color: '#fff',
     fontWeight: '600',
+  },
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  optionBox: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    minWidth: 200,
+  },
+  optionText: {
+    fontSize: 16,
+    paddingVertical: 10,
+    textAlign: 'center',
+    color: '#007bff',
+  },
+  fullScreenOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.95)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fullImage: {
+    width: 300,
+    height: 300,
+    resizeMode: 'contain',
+    borderRadius: 10,
   },
 });
 

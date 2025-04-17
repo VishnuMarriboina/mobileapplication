@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Profile, Footer, NotificationScreen, Header, Login, ClaimedRewards, UnclaimedRewards, TripDetails, DashBoard, Trips, Rewards, FuelRecords, Splash, StartScreen, Aadhar, Insurance, Licence, ProfilePhoto, DriverProfile, DriverDetails, DrawerNavigator } from './Export';
+import { Profile, Footer, NotificationScreen, Header, Login, ClaimedRewards, UnclaimedRewards, TripDetails, DashBoard, Trips, Rewards, FuelRecords, Splash, StartScreen, Aadhar, Insurance, Licence, ProfilePhoto, DriverProfile, DriverDetails, DrawerNavigator, CustomDrawerContent } from './Export';
 import { BRANDCOLOR } from '../Utils/Colors';
 
 
@@ -98,52 +98,65 @@ const MainStack = () => {
                     name="Aadhar"
                     component={Aadhar}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
                 <Stack.Screen
                     name="Insurance"
                     component={Insurance}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
                 <Stack.Screen
                     name="Licence"
                     component={Licence}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
                 <Stack.Screen
                     name="ProfilePhoto"
                     component={ProfilePhoto}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
                 <Stack.Screen
                     name="DriverProfile"
                     component={DriverProfile}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
                 <Stack.Screen
                     name="DriverDetails"
                     component={DriverDetails}
                     options={{
-                        headerShown: true
+                        headerShown: false
                     }}
                 />
-
+                <Stack.Screen
+                    name="Header"
+                    component={Header}
+                    options={{
+                        headerShown: false,
+                        // contentStyle: { backgroundColor:"red" },
+                    }}
+                />
                 {/* <Stack.Screen name="DrawerNavigator" component={DrawerNavigator}
                     options={{
                         headerShown: true
                     }}
                 /> */}
 
-
+                <Stack.Screen
+                    name="CustomDrawerContent"
+                    component={CustomDrawerContent}
+                    options={{
+                        headerShown: false
+                    }}
+                />
             </Stack.Navigator>
         </>
 

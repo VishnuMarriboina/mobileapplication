@@ -20,7 +20,8 @@ import MainStack from './src/Stacks/MainStack';
 // import UploadProfilePhoto from './src/Uploads/ProfilePhoto';
 import amplifyconfig from './amplifyconfiguration.json';
 
-import {Amplify} from 'aws-amplify';
+import { Amplify } from 'aws-amplify';
+import DriverProfile from './src/Uploads/DriverProfile';
 
 Amplify.configure(amplifyconfig)
 
@@ -48,6 +49,7 @@ const App = () => {
                 {/* <Insurance /> */}
                 {/* <ProfilePhoto /> */}
                 {/* <DrawerNavigator /> */}
+                {/* <DriverProfile /> */}
               </BottomSheetModalProvider>
             </GestureHandlerRootView>
           </SafeAreaProvider>

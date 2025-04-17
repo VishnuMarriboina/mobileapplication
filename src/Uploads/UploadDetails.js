@@ -1,6 +1,5 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-// import { Aadhar, Insurance, Licence, ProfilePhoto, DriverProfile, DriverDetails } from './Export';
 import { Aadhar, Insurance, Licence, ProfilePhoto, DriverDetails, DriverProfile } from '../Stacks/Export'
 
 const Stack = createNativeStackNavigator();
@@ -12,8 +11,7 @@ const UploadDetails = () => {
             screenOptions={{
                 contentStyle: { backgroundColor: '#fff' },
                 headerShown: false,
-            }}
-        >
+            }}>
             <Stack.Screen name="DriverDetails" component={DriverDetails} />
             <Stack.Screen name="Aadhar" component={Aadhar} />
             <Stack.Screen name="Insurance" component={Insurance} />

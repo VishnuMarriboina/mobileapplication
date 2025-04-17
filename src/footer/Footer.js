@@ -7,13 +7,21 @@ import Rewards from "../Screens/Rewards";
 import Header from "../Components/Header";
 import { SvgUri } from "react-native-svg";
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from "../Utils/Dimensions";
-
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 const Tab = createBottomTabNavigator();
 
+
+
+
 const Footer = () => {
+
+    const insets = useSafeAreaInsets(); // get bottom inset
     const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
+
+    console.log("insests tab", insets);
 
     useEffect(() => {
         const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
@@ -41,7 +49,8 @@ const Footer = () => {
                 tabBarStyle: isKeyboardVisible
                     ? { display: "none" }
                     : {
-                        height: SCREEN_HEIGHT * 0.09,
+                        // height: SCREEN_HEIGHT * 0.09,
+                        height: SCREEN_HEIGHT * 0.07 + insets.bottom, // 👈 add safe area
                         backgroundColor: '#282A37',
                         borderTopWidth: 0,
                         borderTopLeftRadius: 30,
@@ -55,7 +64,8 @@ const Footer = () => {
                         shadowOffset: { width: 0, height: 0 },
                         shadowOpacity: 0,
                         shadowRadius: 0,
-                        paddingBottom: 10,
+                        // paddingBottom: 10,
+                        paddingBottom: 10 + insets.bottom, // extra padding
                         paddingVertical: 13,
                         width: SCREEN_WIDTH,
                         justifyContent: "center",

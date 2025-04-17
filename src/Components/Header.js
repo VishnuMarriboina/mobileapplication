@@ -70,8 +70,44 @@ const Header = ({ title }) => {
     return (
         <>
             {/* <StatusBar /> */}
-            <StatusBar backgroundColor={'#1D6B5C'} barStyle="light-content" translucent={true} />
-            <SafeAreaView style={{ backgroundColor: 'white', paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }}>
+            {/* <StatusBar backgroundColor={'#1D6B5C'} barStyle="light-content" translucent={true} />a */}
+            {/* <StatusBar barStyle={"dark-content"} backgroundColor="#1D6B5C" translucent={false} /> */}
+
+            {/* <StatusBar
+                barStyle="light-content"
+                backgroundColor="#1D6B5C"
+                translucent={true}
+            /> */}
+
+            {/* For iOS, add an extra view to handle status bar background */}
+            {/* {Platform.OS === 'ios' && (
+                <View style={{
+                    backgroundColor: '#1D6B5C',
+                    height: Platform.OS === 'ios' ? 44 : 0
+                }} />
+            )} */}
+
+
+
+
+            {Platform.OS === 'android' && (
+                <View style={{ height: StatusBar.currentHeight, backgroundColor: '#1D6B5C' }} />
+            )}
+
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="#1D6B5C"
+                translucent={true}  // keep it true for the consistency 
+            />
+
+
+
+
+
+            <SafeAreaView style={{
+                backgroundColor: 'white',
+                //  paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 
+            }}>
                 {/* <LinearGradient colors={['#0F5348', '#208575']} style={styles.headerleaner}> */}
                 {title === "Dashboard" ? (
 
@@ -101,7 +137,7 @@ const Header = ({ title }) => {
                                 </TouchableOpacity>
                             </View>
                             <View>
-                                <Text style={styles.headerText}>{title}</Text>
+                                <Text style={styles.headerdash}>{title}</Text>
                             </View>
 
                             <View>
@@ -188,12 +224,18 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 40,
         height: 120,
         backgroundColor: BRANDCOLOR,
-        paddingHorizontal: 40
+        paddingHorizontal: 20
+    },
+    headerdash: {
+        color: "#FFFFFF",
+        fontWeight: 700,
+        fontSize: 24,
+
     },
     headerText: {
         color: "#FFFFFF",
         fontWeight: 600,
-        fontSize: 24,
+        fontSize: 34,
 
     },
 

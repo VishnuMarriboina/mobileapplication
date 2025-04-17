@@ -29,8 +29,9 @@ const Rewards = () => {
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewards.svg"
               width="100%"  // Makes sure it fits the container
               height="100%" // Ensures it doesn't exceed the container
-              preserveAspectRatio="xMidYMid meet" // Ensures it scales properly
+            // preserveAspectRatio="xMidYMid meet" // Ensures it scales properly
             />
+            {/* <Text>Total:{ }</Text> */}
           </View>
         </View>
 

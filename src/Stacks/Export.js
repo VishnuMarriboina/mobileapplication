@@ -1,5 +1,6 @@
 // export { default as SplashScreen } from '../Pages/SplashScreen/SplashScreen';
 
+
 export { default as MainStack } from '../Stacks/MainStack';
 export {default as StartScreen} from '../Stacks/StartScreen'
 // Common Screens
@@ -13,6 +14,12 @@ export { default as Footer } from '../footer/Footer'
 export { default as DashboardScreen } from '../Screens/DashboardScreen'
 export { default as Trips } from '../Screens/Trips'
 export { default as Rewards } from '../Screens/Rewards'
+export {default as CustomDrawerContent} from '../DrawerNavigator/CustomDrawerContent'
+
+
+
+
+
 
 // login screen
 export { default as Login } from '../login/Login'

@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgb(205, 228, 211)",
         borderRadius: 10,
         overflow: "hidden",
-        elevation: 3, // Shadow effect for Android
+        // elevation: 3, // Shadow effect for Android
         shadowColor: "#000", // Shadow effect for iOS
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
@@ -320,13 +320,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#9C99F5",
         borderRadius: 10,
         overflow: "hidden",
-        elevation: 3, // Shadow effect for Android
+        // elevation: 3, // Shadow effect for Android
         shadowColor: "#000", // Shadow effect for iOS
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
         marginBottom: 20,
-        padding: 20
+        padding: 20,
+        // backgroundColor:"red"
     },
     Attendancetable: {
         // backgroundColor: "#9C99F5",
@@ -755,3 +756,99 @@ const styles = StyleSheet.create({
 //         height: 60,
 //     },
 // });
+
+
+
+
+{/* <Modal
+                visible={modalVisible}
+                transparent={true}
+                animationType="slide"
+                onRequestClose={() => setModalVisible(false)}
+              >
+                <View style={{ flex: 1, justifyContent: "center", backgroundColor: "rgba(0,0,0,0.5)" }}>
+                  <View style={{ backgroundColor: "white", margin: 20, borderRadius: 10, padding: 15 }}>
+                    <Calendar
+                      onDayPress={(day) => {
+                        setSelectedDate(day.dateString);
+                        setModalVisible(false); // Close modal on date selection
+                      }}
+                      markedDates={{
+                        [selectedDate]: { selected: true, marked: true, selectedColor: "blue" },
+                      }}
+                    />
+                  </View>
+                </View>
+              </Modal> */}
+
+
+{/* <BottomSheet
+                ref={bottomSheetRef}
+                index={-1} // Initially closed
+                snapPoints={snapPoints}
+                enablePanDownToClose={true}
+              >
+                <BottomSheetView style={styles.contentContainer}>
+                  <Text style={styles.text}>This is a Bottom Sheet 🎉</Text>
+                  <View style={{ flex: 1, justifyContent: "center", backgroundColor: "rgba(0,0,0,0.5)" }}>
+                    <View style={{ backgroundColor: "white", margin: 20, borderRadius: 10, padding: 15 }}>
+                      <Calendar
+                        onDayPress={(day) => {
+                          setSelectedDate(day.dateString);
+                          // setModalVisible(false); // Close modal on date selection
+                        }}
+                        markedDates={{
+                          [selectedDate]: { selected: true, marked: true, selectedColor: "blue" },
+                        }}
+                      />
+                    </View>
+                  </View>
+                  <Button onPress={handleCloseSheet} title="Close" />
+                </BottomSheetView>
+              </BottomSheet> */}
+
+// separator: {
+//   height: 2,
+//   backgroundColor: "#D9D9D9",
+// },
+// line: {
+//   height: 1,
+//   backgroundColor: "#D9D9D9",
+//   marginHorizontal: 15,
+//   backgroundColor: "red"
+// },
+
+// sheetContent: {
+//   padding: 16,
+//   alignItems: "center",
+// },
+// kmText: {
+//   fontSize: 20,
+//   fontWeight: "bold",
+//   color: "#0F5348",
+//   // textAlign: "center",
+//   // flex: 1,
+//   // paddingVertical: 15,
+// },
+// bottomSheetBackground: {
+//   backgroundColor: "#f5f5f5",
+//   borderTopLeftRadius: 20,
+//   borderTopRightRadius: 20,
+// },
+// bottomcontainer: {
+//   padding: 20,
+//   alignItems: "center",
+// },
+// headerContainer: {
+//   marginBottom: 10,
+//   paddingVertical: 10,
+//   width: "100%",
+//   alignItems: "center",
+//   borderBottomWidth: 1,
+//   borderBottomColor: "#ddd",
+// },
+// headerText: {
+//   fontSize: 18,
+//   fontWeight: "bold",
+//   color: "#333",
+// },

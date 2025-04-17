@@ -1,25 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import {
-    View,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Alert,
-    Dimensions,
-    ActivityIndicator,
-    SafeAreaView,
-    KeyboardAvoidingView,
-    Platform
-} from 'react-native';
+import {View,StyleSheet,Text,TextInput,TouchableOpacity,Alert,ActivityIndicator,SafeAreaView,KeyboardAvoidingView,Platform} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
-// import { sendOtp, checkExistingSession, setError } from '../Redux/Slices/AuthSlice';
-
 import { sendOtp,checkExistingSession,setError } from '../Redux/Slices/AuthSlice';
-// const SCREEN_WIDTH = Dimensions.get('window').width;
-// const SCREEN_HEIGHT = Dimensions.get('window').height;
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../Utils/Dimensions';
 import VerificationScreen from './VerificationScreen';
 const Login = () => {
