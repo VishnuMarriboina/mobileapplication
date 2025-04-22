@@ -54,9 +54,16 @@ const ProfilePhoto = () => {
   };
 
   const handleContinue = () => {
-    alert("Profile photo submitted successfully!");
-    navigation.navigate('DriverProfile');
+    if (!profileImage) {
+      Alert.alert('Error', 'Please upload either both front and back sides of the Aadhar card OR upload a single PDF.');
+      return;
+    }
+
+    Alert.alert("Success", "Aadhar submitted successfully!");
+    navigation.navigate('Insurance');
   };
+
+
 
   return (
     <>

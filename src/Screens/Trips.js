@@ -99,6 +99,7 @@ const Trips = () => {
           />
         </View>
         <TextInput
+        allowFontScaling={false}
           style={styles.input}
           placeholder="Search..."
           placeholderTextColor="#9CA3AF"
@@ -130,14 +131,14 @@ const Trips = () => {
           // <ActivityIndicator size="large" color="blue" />
           <Loading />
         ) : error ? (
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error} allowFontScaling={false}>{error}</Text>
         ) : (
           // <View style={{ backgroundColor: "transparent" }}>
           <View style={styles.screen}>
             {/* <View> */}
             {/* Display a message if no data matches the search */}
             {filteredTrips.length === 0 && searchQuery.length > 0 ? (
-              <Text style={styles.noMatchesText}>No matches found</Text>
+              <Text style={styles.noMatchesText} allowFontScaling={false}>No matches found</Text>
             ) : (
               <FlatList
                 // data={products}
@@ -175,7 +176,7 @@ const Trips = () => {
                       />
                     </View>
                     <View style={styles.Info}>
-                      <Text style={styles.InfoName}>${item.price}</Text>
+                      <Text style={styles.InfoName} allowFontScaling={false}>${item.price}</Text>
                       {/* <Text style={styles.InfoName}>name of the persion</Text> */}
                     </View>
                     <View
@@ -186,14 +187,14 @@ const Trips = () => {
                     >
 
                       {/* <Text>{item.gender}</Text> */}
-                      <Text>completed</Text>
+                      <Text allowFontScaling={false}>completed</Text>
                     </View>
                   </TouchableOpacity>
                 )}
                 ListFooterComponent={() => (
                   // Only show the footer if no search query is active
                   <View style={styles.footer}>
-                    {!searchQuery ? (<Text style={styles.footerText}>Data Completed</Text>) : <Text style={styles.footerText}>Match is completed</Text>}
+                    {!searchQuery ? (<Text style={styles.footerText} allowFontScaling={false}>Data Completed</Text>) : <Text style={styles.footerText} allowFontScaling={false}>Match is completed</Text>}
                   </View>
                 )}
               />

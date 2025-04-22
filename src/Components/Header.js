@@ -137,7 +137,7 @@ const Header = ({ title }) => {
                                 </TouchableOpacity>
                             </View>
                             <View>
-                                <Text style={styles.headerdash}>{title}</Text>
+                                <Text style={styles.headerdash} allowFontScaling={false}>{title}</Text>
                             </View>
 
                             <View>
@@ -147,7 +147,7 @@ const Header = ({ title }) => {
                                     onPress={handleToggle}
                                 >
                                     {/* Text moves to the left when active, right when inactive */}
-                                    <Text style={[styles.toggleText, isToggled ? styles.textRight : styles.textLeft]}>
+                                    <Text style={[styles.toggleText, isToggled ? styles.textRight : styles.textLeft]} allowFontScaling={false}>
                                         {isToggled ? "Active" : "Inactive"}
                                     </Text>
 
@@ -182,7 +182,7 @@ const Header = ({ title }) => {
                 ) : title === "Trips" || title === "Rewards" ? (
                     <View>
                         <LinearGradient colors={['#1D6B5C', '#148B7E']} style={styles.defaultHeader}>
-                            <Text style={styles.headerText}>{title}</Text>
+                            <Text style={styles.headerText} allowFontScaling={false}>{title}</Text>
                         </LinearGradient>
                     </View>
                 ) : (

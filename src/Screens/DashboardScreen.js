@@ -1,33 +1,27 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import Dashboard from '../Pages/Dashboard/Dashboard'
-import DashboardActive from '../Pages/Dashboard/DashboardActive'
-import DashboardInactive from '../Pages/Dashboard/DashboardInactive'
-import { useDispatch, useSelector } from 'react-redux'
-import { ConsoleLogger } from 'aws-amplify/utils'
+import {View, Text} from 'react-native';
+import React from 'react';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import DashboardInactive from '../Pages/Dashboard/DashboardInactive';
+import {useDispatch, useSelector} from 'react-redux';
+import {ConsoleLogger} from 'aws-amplify/utils';
+import DashboardActive from '../Pages/Dashboard/DashboardActive';
 
 const DashboardScreen = () => {
+  const status = useSelector(state => state.Driverdata.status);
 
-  const status = useSelector((state) => state.Driverdata.status);
+  const user = useSelector(state => {
+    state.Authdata.isNewUser;
+  });
+  console.log('status', status);
 
-  const user = useSelector((state) => { state.Authdata.isNewUser })
-  console.log("status", status);
-
-  console.log("about user", user);
-
+  console.log('about user', user);
 
   return (
-    <View style={{ flex: 1 }}>
-
+    <View style={{flex: 1}}>
       <Dashboard />
       {/* <DashboardActive /> */}
-      {/* <DashboardInactive /> */}
     </View>
-  )
-}
+  );
+};
 
-export default DashboardScreen
-
-
-
-
+export default DashboardScreen;

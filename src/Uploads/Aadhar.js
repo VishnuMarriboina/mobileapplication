@@ -125,7 +125,7 @@ const Aadhar = () => {
             width={18}
           />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Please Upload Aadhar Card</Text>
+        <Text style={styles.headerText} allowFontScaling={false}>Please Upload Aadhar Card</Text>
         <View style={{ width: 18 }} />
       </View>
 
@@ -221,25 +221,25 @@ const Aadhar = () => {
         <View style={styles.modalContainer}>
 
           {/* <View style={styles.modalOverlay}> */}
-            {/* <View style={styles.modalBox}> */}
-              <TouchableOpacity onPress={handleImageFromCamera}>
-                <Text style={styles.modalText}>Take from Camera</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handleImageFromGallery}>
-                <Text style={styles.modalText}>Choose from Gallery</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={handlePickDocument}>
-                <Text style={styles.modalText}>Upload PDF</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
-                <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
-              </TouchableOpacity>
-            </View>
+          {/* <View style={styles.modalBox}> */}
+          <TouchableOpacity onPress={handleImageFromCamera}>
+            <Text style={styles.modalText}>Take from Camera</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleImageFromGallery}>
+            <Text style={styles.modalText}>Choose from Gallery</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handlePickDocument}>
+            <Text style={styles.modalText}>Upload PDF</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
+            <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
 
-{/* <View><Text>Hellow</Text></View> */}
+        {/* <View><Text>Hellow</Text></View> */}
 
 
-          {/* </View> */}
+        {/* </View> */}
         {/* </View> */}
       </CustomModal>
       {/* </Modal> */}
@@ -274,6 +274,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     alignSelf: 'center',
     marginVertical: 10,
+   
   },
   subText: {
     fontSize: 14,

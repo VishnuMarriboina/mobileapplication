@@ -1,39 +1,41 @@
-
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Platform, StatusBar, Modal } from 'react-native';
-import { SvgUri } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from '../Redux/Slices/AuthSlice'
-
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  Platform,
+  StatusBar,
+  Modal,
+} from 'react-native';
+import {SvgUri} from 'react-native-svg';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {setUser} from '../Redux/Slices/AuthSlice';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const DriverProfile = () => {
-
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const [modalVisible, setModalVisible] = useState(false);
   const [viewImageModal, setViewImageModal] = useState(false);
-  const [imageUri, setImageUri] = useState('https://randomuser.me/api/portraits/men/32.jpg');
+  const [imageUri, setImageUri] = useState(
+    'https://randomuser.me/api/portraits/men/32.jpg',
+  );
 
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.Authdata);
+  const auth = useSelector(state => state.Authdata);
 
   const handleCancel = () => {
     navigation.goBack();
-
-  }
-
-
-
-
-  
+  };
 
   const handleSubmit = () => {
     dispatch(setUser(false));
-    console.log("new driver was created", auth.isNewUser);
-  }
-
-
-
+    console.log('new driver was created', auth.isNewUser);
+  };
 
   const openOptions = () => setModalVisible(true);
 
@@ -42,28 +44,24 @@ const DriverProfile = () => {
     navigation.navigate('ProfilePhoto');
   };
 
-
-
   return (
     <>
-
-      <StatusBar barStyle={"dark-content"} backgroundColor="white" />
+      <StatusBar barStyle={'dark-content'} backgroundColor="white" />
 
       <View
         style={[
           styles.headertop,
-          { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
-        ]}
-      >
-        <TouchableOpacity style={styles.backButton}
-
+          {paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0},
+        ]}>
+        <TouchableOpacity
+          style={styles.backButton}
           onPress={() => {
             navigation.goBack();
-          }}
-
-        >
+          }}>
           <SvgUri
-            uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg"}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg'
+            }
             height={18}
             width={18}
           />
@@ -80,9 +78,9 @@ const DriverProfile = () => {
         </TouchableOpacity>
       </View>
 
-
-
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={[styles.container, {marginBottom: insets.bottom}]}
+        showsVerticalScrollIndicator={false}>
         {/* Header */}
         {/* <View style={styles.header}> */}
 
@@ -110,11 +108,12 @@ const DriverProfile = () => {
 
         {/* Profile Image & Name */}
         <View style={styles.profileCard}>
-
-          <View >
+          <View>
             <View style={styles.avatarWrapper}>
-              <Image source={{ uri: imageUri }} style={styles.avatar} />
-              <TouchableOpacity style={styles.cameraIconWrapper} onPress={openOptions}>
+              <Image source={{uri: imageUri}} style={styles.avatar} />
+              <TouchableOpacity
+                style={styles.cameraIconWrapper}
+                onPress={openOptions}>
                 <SvgUri
                   uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg"
                   width={20}
@@ -125,7 +124,7 @@ const DriverProfile = () => {
             {/* <Text style={styles.profileName}>Ajith Singh</Text> */}
           </View>
 
-          <View style={{ marginTop: 5 }}>
+          <View style={{marginTop: 5}}>
             <Text style={styles.profileName}>Ajith Singh</Text>
           </View>
 
@@ -134,18 +133,17 @@ const DriverProfile = () => {
             transparent
             visible={modalVisible}
             animationType="fade"
-            onRequestClose={() => setModalVisible(false)}
-          >
+            onRequestClose={() => setModalVisible(false)}>
             <TouchableOpacity
               style={styles.overlay}
               activeOpacity={1}
-              onPressOut={() => setModalVisible(false)}
-            >
+              onPressOut={() => setModalVisible(false)}>
               <View style={styles.optionBox}>
-                <TouchableOpacity onPress={() => {
-                  setModalVisible(false);
-                  setViewImageModal(true);
-                }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setModalVisible(false);
+                    setViewImageModal(true);
+                  }}>
                   <Text style={styles.optionText}>View Image</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleEdit}>
@@ -160,43 +158,27 @@ const DriverProfile = () => {
             visible={viewImageModal}
             transparent
             animationType="fade"
-            onRequestClose={() => setViewImageModal(false)}
-          >
+            onRequestClose={() => setViewImageModal(false)}>
             <TouchableOpacity
               style={styles.fullScreenOverlay}
-              onPress={() => setViewImageModal(false)}
-            >
-              <Image source={{ uri: imageUri }} style={styles.fullImage} />
+              onPress={() => setViewImageModal(false)}>
+              <Image source={{uri: imageUri}} style={styles.fullImage} />
             </TouchableOpacity>
           </Modal>
-
-
         </View>
-
 
         {/* View Image Modal */}
         <Modal
           visible={viewImageModal}
           transparent={true}
           animationType="fade"
-          onRequestClose={() => setViewImageModal(false)}
-        >
+          onRequestClose={() => setViewImageModal(false)}>
           <TouchableOpacity
             style={styles.fullScreenOverlay}
-            onPress={() => setViewImageModal(false)}
-          >
-            <Image source={{ uri: imageUri }} style={styles.fullImage} />
+            onPress={() => setViewImageModal(false)}>
+            <Image source={{uri: imageUri}} style={styles.fullImage} />
           </TouchableOpacity>
         </Modal>
-
-
-
-
-
-
-
-
-
 
         {/* Contact Information */}
 
@@ -204,7 +186,10 @@ const DriverProfile = () => {
           {/* Contact Information Header */}
           <View style={styles.cardHeader}>
             <Text style={styles.cardTitle}>Contact Information</Text>
-            <TouchableOpacity onPress={() => { navigation.navigate("DriverDetails") }}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('DriverDetails');
+              }}>
               <SvgUri
                 uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/edit.svg"
                 width={24}
@@ -240,7 +225,7 @@ const DriverProfile = () => {
           </View>
 
           {/* Personal Information Header */}
-          <View style={{ paddingVertical: 15 }} />
+          <View style={{paddingVertical: 15}} />
           <View style={styles.cardHeader}>
             <Text style={styles.cardTitle}>Personal Information</Text>
           </View>
@@ -267,20 +252,23 @@ const DriverProfile = () => {
             />
             <View style={styles.infoColumn}>
               <Text style={styles.label}>Address</Text>
-              <Text style={styles.infoText}>Flat No. 202, Green Residency
-                Road No. 12, Banjara Hills, 500034</Text>
+              <Text style={styles.infoText}>
+                Flat No. 202, Green Residency Road No. 12, Banjara Hills, 500034
+              </Text>
             </View>
           </View>
         </View>
 
         {/* Uploaded Documents */}
         <View style={styles.infoCard}>
-          <Text style={[styles.cardTitle, { marginBottom: 10 }]}>Uploaded Documents</Text>
+          <Text style={[styles.cardTitle, {marginBottom: 10}]}>
+            Uploaded Documents
+          </Text>
 
           {[
-            { name: 'Aadhar Card', date: 'Mar 15, 2024', icon: 'aadhar' },
-            { name: 'Insurance', date: 'Mar 15, 2024', icon: 'insurance' },
-            { name: 'License', date: 'Mar 15, 2024', icon: 'licence' },
+            {name: 'Aadhar Card', date: 'Mar 15, 2024', icon: 'aadhar'},
+            {name: 'Insurance', date: 'Mar 15, 2024', icon: 'insurance'},
+            {name: 'License', date: 'Mar 15, 2024', icon: 'licence'},
           ].map((doc, index) => (
             <View key={index} style={styles.documentRow}>
               <SvgUri
@@ -288,12 +276,19 @@ const DriverProfile = () => {
                 width={24}
                 height={24}
               />
-              <View style={{ marginLeft: 10 }}>
+              <View style={{marginLeft: 10}}>
                 <Text style={styles.docTitle}>{doc.name}</Text>
                 <Text style={styles.docDate}>Uploaded on {doc.date}</Text>
               </View>
 
-              <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", alignItems: "center", paddingHorizontal: 15 }}>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  alignItems: 'center',
+                  paddingHorizontal: 15,
+                }}>
                 <SvgUri
                   uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/eye.svg`}
                   width={24}
@@ -301,20 +296,17 @@ const DriverProfile = () => {
                 />
                 <SvgUri
                   uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg`}
-                // width={24}
-                // height={24}
+                  // width={24}
+                  // height={24}
                 />
               </View>
             </View>
           ))}
         </View>
 
-
-
-
-
         {/* Buttons */}
-        <View style={styles.buttonRow}>
+        {/* <View style={styles.buttonRow}> */}
+        <View style={[styles.buttonRow, {marginBottom: 40 + insets.bottom}]}>
           <TouchableOpacity style={styles.cancelBtn} onPress={handleCancel}>
             <Text style={styles.cancelText}>Cancel</Text>
           </TouchableOpacity>
@@ -334,6 +326,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 20,
+    // backgroundColor:"red",
+    // paddingBottom:850
   },
   // header: {
   //   // marginTop: 10,
@@ -342,7 +336,6 @@ const styles = StyleSheet.create({
   //   // justifyContent: 'space-between',
   //   // alignItems: 'center',
   //   // backgroundColor: "red",
-
 
   //   flexDirection: "row",
   //   alignItems: "center",
@@ -353,15 +346,14 @@ const styles = StyleSheet.create({
   // },
 
   headertop: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 16,
     // height: 60,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
     // backgroundColor: "red"
   },
-
 
   // },
   backButton: {
@@ -369,7 +361,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 22,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   title: {
     fontSize: 16,
@@ -420,12 +412,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
 
-
   profileName: {
     fontSize: 16,
     fontWeight: '600',
     // marginTop: 8,
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
 
   infoCard: {
@@ -439,7 +430,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 10,
     // backgroundColor:"red",
-    alignItems: "center"
+    alignItems: 'center',
   },
   cardTitle: {
     fontWeight: '600',
@@ -449,10 +440,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 5,
     paddingVertical: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
   infoColumn: {
     marginLeft: 12,
@@ -475,10 +466,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 12,
     // justifyContent:"space-evenly"
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 5,
     paddingVertical: 10,
-    borderRadius: 5
+    borderRadius: 5,
   },
   docTitle: {
     fontSize: 14,
@@ -492,7 +483,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 30,
-    marginBottom: 40,
+    // marginBottom: 40 + insets.bottom,
   },
   cancelBtn: {
     flex: 0.48,
@@ -548,41 +539,12 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React from 'react'
 // import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 // import { SCREEN_HEIGHT } from '../Utils/Dimensions'
 // import { useNavigation } from '@react-navigation/native'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { setUser } from '../Redux/Slices/AuthSlice'
-
 
 // const DriverProfile = () => {
 //   const navigation = useNavigation();
@@ -593,7 +555,6 @@ const styles = StyleSheet.create({
 //   const handleCancel = () => {
 //     navigation.goBack();
 //   }
-
 
 //   const handleSubmit = () => {
 //     // navigation.navigate("Footer"); // Navigate to the Insurance screen

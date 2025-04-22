@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     icons: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
+        marginTop: 20 ,
     },
 });
 

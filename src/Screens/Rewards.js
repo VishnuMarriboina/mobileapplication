@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from "../Utils/Dimensions";
-import RewardsTable from "../Components/RewardsTable";
-import CustomModal from "../Components/CustomModal";
-import BarCard from "../Components/BarCard";
-import { SvgUri } from "react-native-svg";
-import { useNavigation } from "@react-navigation/native";
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../Utils/Dimensions';
+import RewardsTable from '../Components/RewardsTable';
+import CustomModal from '../Components/CustomModal';
+import BarCard from '../Components/BarCard';
+import {SvgUri} from 'react-native-svg';
+import {useNavigation} from '@react-navigation/native';
 const Rewards = () => {
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -13,7 +19,6 @@ const Rewards = () => {
   return (
     <>
       <View style={styles.container}>
-
         {/* //--------------------Image */}
         {/* <View style={{ justifyContent: "center", alignItems: "center" }}>
           <View style={styles.image}>
@@ -23,20 +28,23 @@ const Rewards = () => {
           </View>
         </View> */}
 
-        <View style={{ justifyContent: "center", alignItems: "center", zIndex: 10, marginTop: -35 }}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 10,
+            marginTop: -35,
+          }}>
           <View style={styles.image}>
             <SvgUri
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewards.svg"
-              width="100%"  // Makes sure it fits the container
+              width="100%" // Makes sure it fits the container
               height="100%" // Ensures it doesn't exceed the container
-            // preserveAspectRatio="xMidYMid meet" // Ensures it scales properly
+              // preserveAspectRatio="xMidYMid meet" // Ensures it scales properly
             />
             {/* <Text>Total:{ }</Text> */}
           </View>
         </View>
-
-
-
 
         {/* <View style={styles.screen}>
           <View style={styles.tabbar}>
@@ -54,60 +62,78 @@ const Rewards = () => {
           </TouchableOpacity>
         </View> */}
 
-
         {/*........................new code..... */}
         {/*-------------01---------------- */}
-        <TouchableOpacity style={styles.buttonContainer}
-          onPress={() => navigation.navigate("ClaimedRewards")}
-        // onPress={() => setModalVisible(true)}
+        <TouchableOpacity
+          style={styles.buttonContainer}
+          onPress={() => navigation.navigate('ClaimedRewards')}
+          // onPress={() => setModalVisible(true)}
         >
           {/* Left Icon */}
           <SvgUri
-            uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/readyfilled.svg'}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/readyfilled.svg'
+            }
             height={28}
             width={28}
           />
 
           {/* Middle Content */}
           <View style={styles.textContainer}>
-            <Text style={styles.title}>₹1,250.00</Text>
-            <Text style={styles.subtitle}>Net Claimed Rewards</Text>
+            <Text style={styles.title} allowFontScaling={false}>
+              ₹1,250.00
+            </Text>
+            <Text style={styles.subtitle} allowFontScaling={false}>
+              Net Claimed Rewards
+            </Text>
           </View>
 
           {/* Right Icon */}
           <SvgUri
-            uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'
+            }
             height={22}
             width={22}
           />
         </TouchableOpacity>
         {/* -----------------------02--------------------- */}
         <TouchableOpacity
-          onPress={() => navigation.navigate("UnclaimedRewards")}
+          onPress={() => navigation.navigate('UnclaimedRewards')}
           // onPress={() => setModalVisible(true)}
           style={styles.buttonContainer}>
           {/* Left Icon */}
           <SvgUri
-            uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewards.svg'}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewards.svg'
+            }
             height={28}
             width={28}
           />
           {/* Middle Content */}
           <View style={styles.textContainer}>
-            <Text style={styles.title}>₹750.00</Text>
-            <Text style={styles.subtitle}>UnClaimed Rewards</Text>
+            <Text style={styles.title} allowFontScaling={false}>
+              ₹750.00
+            </Text>
+            <Text style={styles.subtitle} allowFontScaling={false}>
+              UnClaimed Rewards
+            </Text>
           </View>
 
           {/* Right Icon */}
           <SvgUri
-            uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowforward.svg'
+            }
             height={22}
             width={22}
           />
         </TouchableOpacity>
 
         {/* modal to view table */}
-        <CustomModal isVisible={isModalVisible} onClose={() => setModalVisible(false)}>
+        <CustomModal
+          isVisible={isModalVisible}
+          onClose={() => setModalVisible(false)}>
           {/* <RewardsTable /> */}
           <RewardsTable onClose={() => setModalVisible(false)} />
         </CustomModal>
@@ -125,42 +151,41 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 5,
     // backgroundColor: "red"
-    backgroundColor: "white"
+    backgroundColor: 'white',
   },
   screen: {
     // flex: 1,
     // justifyContent: "center",
-    alignItems: "center"
-
+    alignItems: 'center',
   },
   text: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   buttontext: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "white"
+    fontWeight: 'bold',
+    color: 'white',
   },
   button: {
-    backgroundColor: "#156CF7",
+    backgroundColor: '#156CF7',
     paddingVertical: 6,
     paddingHorizontal: 5,
     borderRadius: 10,
     width: SCREEN_WIDTH / 2.6,
-    alignItems: "center",
+    alignItems: 'center',
     // marginRight: 30
   },
   tabbar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: SCREEN_WIDTH * 0.95,
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: "black"
+    borderColor: 'black',
   },
   //   imageContainer: {
   //   position: "absolute",
@@ -171,16 +196,16 @@ const styles = StyleSheet.create({
   //   alignItems: "center",
   // },
   image: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9C99F5",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#9C99F5',
     height: SCREEN_HEIGHT / 5,
     width: SCREEN_WIDTH * 0.85,
     marginBottom: 20,
-    borderColor: "red",
+    borderColor: 'red',
     borderRadius: 20,
     zIndex: 10,
-    overflow: "hidden",  // Ensures SVG doesn't overflow
+    overflow: 'hidden', // Ensures SVG doesn't overflow
   },
 
   //--------------------------------button----------------------------------------------------
@@ -196,8 +221,8 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     // elevation: 3,
     margin: 10,
-    backgroundColor: "#148B7E",
-    backgroundColor: "#F3F4F6"
+    backgroundColor: '#148B7E',
+    backgroundColor: '#F3F4F6',
   },
   textContainer: {
     flex: 1,
@@ -213,7 +238,6 @@ const styles = StyleSheet.create({
     color: '#666',
   },
 });
-
 
 // import React, { useState } from "react";
 // import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from "react-native";
