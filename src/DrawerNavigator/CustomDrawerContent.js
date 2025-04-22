@@ -207,7 +207,6 @@ const CustomDrawerContent = () => {
                     style={{width: 24, height: 24}}
                   />
                 </View>
-                rewardsoutline
                 <View style={styles.Info}>
                   <Text style={styles.InfoName} allowFontScaling={false}>
                     Rewards
