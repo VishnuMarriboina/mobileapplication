@@ -195,9 +195,16 @@ const DriverDetails = () => {
             }
             height={18}
             width={18}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                ⬅️
+              </Text>
+            }
           />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Add Details</Text>
+        <Text style={styles.headerText} allowFontScaling={false}>
+          Add Details
+        </Text>
         <TouchableOpacity />
       </View>
 
@@ -205,7 +212,7 @@ const DriverDetails = () => {
       <ScrollView
         contentContainerStyle={{
           padding: 20,
-          paddingBottom:insets.bottom,
+          paddingBottom: insets.bottom,
           backgroundColor: '#EFEFF4',
           flex: 1,
         }}
@@ -225,12 +232,17 @@ const DriverDetails = () => {
         )}
 
         <View style={styles.container}>
-          <Text style={styles.header}>Driver Details</Text>
+          <Text style={styles.header} allowFontScaling={false}>
+            Driver Details
+          </Text>
 
           {/* Driver Name (Non-editable) */}
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Driver Name</Text>
+            <Text style={styles.label} allowFontScaling={false}>
+              Driver Name
+            </Text>
             <TextInput
+              allowFontScaling={false}
               style={[styles.input, {backgroundColor: '#ddd'}]}
               value={form.driverName}
               // editable={false}
@@ -239,8 +251,11 @@ const DriverDetails = () => {
 
           {/* Personal Number (Non-editable) */}
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Personal Number</Text>
+            <Text style={styles.label} allowFontScaling={false}>
+              Personal Number
+            </Text>
             <TextInput
+              allowFontScaling={false}
               style={[styles.input, {backgroundColor: '#ddd'}]}
               value={form.personalNumber}
               editable={false}
@@ -251,11 +266,12 @@ const DriverDetails = () => {
           {/* Emergency Number */}
           <View style={styles.inputContainer}>
             {/* <Text style={styles.label}>Emergency Number</Text> */}
-            <Text style={styles.label}>
+            <Text style={styles.label} allowFontScaling={false}>
               Emergency Number <Text style={{color: 'red'}}>*</Text>
             </Text>
 
             <TextInput
+              allowFontScaling={false}
               style={styles.input}
               placeholder="Enter Emergency Number"
               placeholderTextColor={'#999'}
@@ -264,14 +280,19 @@ const DriverDetails = () => {
               keyboardType="numeric"
             />
             {errors.emergencyNumber ? (
-              <Text style={styles.errorText}>{errors.emergencyNumber}</Text>
+              <Text style={styles.errorText} allowFontScaling={false}>
+                {errors.emergencyNumber}
+              </Text>
             ) : null}
           </View>
 
           {/* Address */}
           <View style={styles.inputContainer}>
-            <Text style={styles.label}>Address</Text>
+            <Text style={styles.label} allowFontScaling={false}>
+              Address
+            </Text>
             <TextInput
+              allowFontScaling={false}
               style={[styles.input, {height: 80, textAlignVertical: 'top'}]}
               placeholder="Enter Address"
               placeholderTextColor={'#999'}
@@ -284,7 +305,9 @@ const DriverDetails = () => {
 
           {/* Blood Group Dropdown */}
           <View style={{marginBottom: 20}}>
-            <Text style={styles.label}>Blood Group</Text>
+            <Text style={styles.label} allowFontScaling={false}>
+              Blood Group
+            </Text>
             <Dropdown
               style={styles.dropdown}
               data={bloodItems}
@@ -309,7 +332,9 @@ const DriverDetails = () => {
 
           {/* Status Dropdown */}
           <View style={{marginBottom: 20}}>
-            <Text style={styles.label}>Status</Text>
+            <Text style={styles.label} allowFontScaling={false}>
+              Status
+            </Text>
             <Dropdown
               style={styles.dropdown}
               data={statusItems}
@@ -333,13 +358,17 @@ const DriverDetails = () => {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
-            <Text style={styles.cancelText}>Cancel</Text>
+            <Text style={styles.cancelText} allowFontScaling={false}>
+              Cancel
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.continueButton}
             onPress={handleSubmit}>
-            <Text style={styles.continueText}>Continue</Text>
+            <Text style={styles.continueText} allowFontScaling={false}>
+              Continue
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

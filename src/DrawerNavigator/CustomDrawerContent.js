@@ -45,7 +45,7 @@ const CustomDrawerContent = () => {
         // style={{ backgroundColor: "red", borderRadius: 15 }}
         style={[
           {paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0},
-          {backgroundColor: '#1D6B5C', flex: 1, paddingBottom: insets.bottom},
+          {backgroundColor: '#1D6B5C', flex: 1},
         ]}>
         <View style={styles.header}>
           <View>
@@ -131,7 +131,7 @@ const CustomDrawerContent = () => {
         </View>
 
         {/* content of the page or body of the page */}
-        <View style={styles.container}>
+        <View style={[styles.container, {paddingBottom: insets.bottom}]}>
           <ScrollView showsVerticalScrollIndicator={false}>
             {/* ....................new code....... */}
             <BarCard onPress={() => navigation.navigate('Footer')}>
@@ -142,6 +142,11 @@ const CustomDrawerContent = () => {
                       'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/dashboard.svg'
                     }
                     style={{width: 24, height: 24}}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        📊
+                      </Text>
+                    }
                   />
                 </View>
                 <View style={styles.Info}>
@@ -158,6 +163,11 @@ const CustomDrawerContent = () => {
                     height={34}
                     width={20}
                     tintColor={'gray'}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        →
+                      </Text>
+                    }
                   />
                 </View>
               </View>
@@ -173,6 +183,11 @@ const CustomDrawerContent = () => {
                       'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/truckwithbg.svg'
                     }
                     style={{width: 24, height: 24}}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        🚚
+                      </Text>
+                    }
                   />
                 </View>
                 <View style={styles.Info}>
@@ -188,6 +203,11 @@ const CustomDrawerContent = () => {
                     height={34}
                     width={20}
                     tintColor={'gray'}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        →
+                      </Text>
+                    }
                   />
                 </View>
               </View>
@@ -205,6 +225,11 @@ const CustomDrawerContent = () => {
                       'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewards.svg'
                     }
                     style={{width: 24, height: 24}}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        🎁
+                      </Text>
+                    }
                   />
                 </View>
                 <View style={styles.Info}>
@@ -220,6 +245,11 @@ const CustomDrawerContent = () => {
                     height={34}
                     width={20}
                     tintColor={'gray'}
+                    fallback={
+                      <Text style={{fontSize: 24}} allowFontScaling={false}>
+                        →
+                      </Text>
+                    }
                   />
                 </View>
               </View>
@@ -290,6 +320,12 @@ const CustomDrawerContent = () => {
                   }
                   height={32}
                   width={32}
+                  tintColor={'gray'}
+                  fallback={
+                    <Text style={{fontSize: 24}} allowFontScaling={false}>
+                      🚫
+                    </Text>
+                  }
                 />
               </View>
               <View style={styles.Info}>
@@ -305,6 +341,11 @@ const CustomDrawerContent = () => {
                   height={34}
                   width={20}
                   tintColor={'gray'}
+                  fallback={
+                    <Text style={{fontSize: 24}} allowFontScaling={false}>
+                      →
+                    </Text>
+                  }
                 />
               </View>
             </View>

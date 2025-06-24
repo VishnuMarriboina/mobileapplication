@@ -64,10 +64,17 @@ const DriverProfile = () => {
             }
             height={18}
             width={18}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                ←⬅️
+              </Text>
+            }
           />
         </TouchableOpacity>
 
-        <Text style={styles.headerText}>Driver Profile</Text>
+        <Text style={styles.headerText} allowFontScaling={false}>
+          Driver Profile
+        </Text>
 
         <TouchableOpacity>
           {/* <SvgUri
@@ -118,6 +125,11 @@ const DriverProfile = () => {
                   uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg"
                   width={20}
                   height={20}
+                  fallback={
+                    <Text style={{fontSize: 20}} allowFontScaling={false}>
+                      📸
+                    </Text>
+                  }
                 />
               </TouchableOpacity>
             </View>
@@ -125,7 +137,9 @@ const DriverProfile = () => {
           </View>
 
           <View style={{marginTop: 5}}>
-            <Text style={styles.profileName}>Ajith Singh</Text>
+            <Text style={styles.profileName} allowFontScaling={false}>
+              Ajith Singh
+            </Text>
           </View>
 
           {/* Popup Modal */}
@@ -144,10 +158,14 @@ const DriverProfile = () => {
                     setModalVisible(false);
                     setViewImageModal(true);
                   }}>
-                  <Text style={styles.optionText}>View Image</Text>
+                  <Text style={styles.optionText} allowFontScaling={false}>
+                    View Image
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={handleEdit}>
-                  <Text style={styles.optionText}>Edit Image</Text>
+                  <Text style={styles.optionText} allowFontScaling={false}>
+                    Edit Image
+                  </Text>
                 </TouchableOpacity>
               </View>
             </TouchableOpacity>
@@ -185,7 +203,9 @@ const DriverProfile = () => {
         <View style={styles.infoCard}>
           {/* Contact Information Header */}
           <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Contact Information</Text>
+            <Text style={styles.cardTitle} allowFontScaling={false}>
+              Contact Information
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate('DriverDetails');
@@ -194,6 +214,11 @@ const DriverProfile = () => {
                 uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/edit.svg"
                 width={24}
                 height={24}
+                fallback={
+                  <Text style={{fontSize: 24}} allowFontScaling={false}>
+                    ✏️
+                  </Text>
+                }
               />
             </TouchableOpacity>
           </View>
@@ -204,10 +229,19 @@ const DriverProfile = () => {
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/phoneblue.svg"
               width={24}
               height={24}
+              fallback={
+                <Text style={{fontSize: 24}} allowFontScaling={false}>
+                  📞
+                </Text>
+              }
             />
             <View style={styles.infoColumn}>
-              <Text style={styles.label}>Personal Number</Text>
-              <Text style={styles.infoText}>+91 9573 9573 95</Text>
+              <Text style={styles.label} allowFontScaling={false}>
+                Personal Number
+              </Text>
+              <Text style={styles.infoText} allowFontScaling={false}>
+                +91 9573 9573 95
+              </Text>
             </View>
           </View>
 
@@ -217,17 +251,28 @@ const DriverProfile = () => {
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/emergencyred.svg"
               width={24}
               height={24}
+              fallback={
+                <Text style={{fontSize: 24}} allowFontScaling={false}>
+                  🚑
+                </Text>
+              }
             />
             <View style={styles.infoColumn}>
-              <Text style={styles.label}>Emergency Number</Text>
-              <Text style={styles.infoText}>+91 9573 9573 85</Text>
+              <Text style={styles.label} allowFontScaling={false}>
+                Emergency Number
+              </Text>
+              <Text style={styles.infoText} allowFontScaling={false}>
+                +91 9573 9573 85
+              </Text>
             </View>
           </View>
 
           {/* Personal Information Header */}
           <View style={{paddingVertical: 15}} />
           <View style={styles.cardHeader}>
-            <Text style={styles.cardTitle}>Personal Information</Text>
+            <Text style={styles.cardTitle} allowFontScaling={false}>
+              Personal Information
+            </Text>
           </View>
 
           {/* Blood Group */}
@@ -236,10 +281,19 @@ const DriverProfile = () => {
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/bloodgroup.svg"
               width={24}
               height={24}
+              fallback={
+                <Text style={{fontSize: 24}} allowFontScaling={false}>
+                  🩸
+                </Text>
+              }
             />
             <View style={styles.infoColumn}>
-              <Text style={styles.label}>Blood Group</Text>
-              <Text style={styles.infoText}>O Positive</Text>
+              <Text style={styles.label} allowFontScaling={false}>
+                Blood Group
+              </Text>
+              <Text style={styles.infoText} allowFontScaling={false}>
+                O Positive
+              </Text>
             </View>
           </View>
 
@@ -249,10 +303,17 @@ const DriverProfile = () => {
               uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/locationgreen.svg"
               width={24}
               height={24}
+              fallback={
+                <Text style={{fontSize: 24}} allowFontScaling={false}>
+                  📍
+                </Text>
+              }
             />
             <View style={styles.infoColumn}>
-              <Text style={styles.label}>Address</Text>
-              <Text style={styles.infoText}>
+              <Text style={styles.label} allowFontScaling={false}>
+                Address
+              </Text>
+              <Text style={styles.infoText} allowFontScaling={false}>
                 Flat No. 202, Green Residency Road No. 12, Banjara Hills, 500034
               </Text>
             </View>
@@ -261,7 +322,9 @@ const DriverProfile = () => {
 
         {/* Uploaded Documents */}
         <View style={styles.infoCard}>
-          <Text style={[styles.cardTitle, {marginBottom: 10}]}>
+          <Text
+            style={[styles.cardTitle, {marginBottom: 10}]}
+            allowFontScaling={false}>
             Uploaded Documents
           </Text>
 
@@ -275,10 +338,19 @@ const DriverProfile = () => {
                 uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/${doc.icon}.svg`}
                 width={24}
                 height={24}
+                fallback={
+                  <Text style={{fontSize: 24}} allowFontScaling={false}>
+                    📄
+                  </Text>
+                }
               />
               <View style={{marginLeft: 10}}>
-                <Text style={styles.docTitle}>{doc.name}</Text>
-                <Text style={styles.docDate}>Uploaded on {doc.date}</Text>
+                <Text style={styles.docTitle} allowFontScaling={false}>
+                  {doc.name}
+                </Text>
+                <Text style={styles.docDate} allowFontScaling={false}>
+                  Uploaded on {doc.date}
+                </Text>
               </View>
 
               <View
@@ -293,11 +365,21 @@ const DriverProfile = () => {
                   uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/eye.svg`}
                   width={24}
                   height={24}
+                  fallback={
+                    <Text style={{fontSize: 24}} allowFontScaling={false}>
+                      👀
+                    </Text>
+                  }
                 />
                 <SvgUri
                   uri={`https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg`}
                   // width={24}
                   // height={24}
+                  fallback={
+                    <Text style={{fontSize: 24}} allowFontScaling={false}>
+                      📤
+                    </Text>
+                  }
                 />
               </View>
             </View>
@@ -308,10 +390,14 @@ const DriverProfile = () => {
         {/* <View style={styles.buttonRow}> */}
         <View style={[styles.buttonRow, {marginBottom: 40 + insets.bottom}]}>
           <TouchableOpacity style={styles.cancelBtn} onPress={handleCancel}>
-            <Text style={styles.cancelText}>Cancel</Text>
+            <Text style={styles.cancelText} allowFontScaling={false}>
+              Cancel
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.continueBtn} onPress={handleSubmit}>
-            <Text style={styles.continueText}>Submit</Text>
+            <Text style={styles.continueText} allowFontScaling={false}>
+              Submit
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -64,6 +64,11 @@ const ClaimedRewards = () => {
               }
               height={18}
               width={18}
+              fallback={
+                <Text style={{fontSize: 18}} allowFontScaling={false}>
+                  ⬅️
+                </Text>
+              }
             />
           </TouchableOpacity>
 
@@ -104,6 +109,11 @@ const ClaimedRewards = () => {
                 }
                 height={28}
                 width={28}
+                fallback={
+                  <Text style={{fontSize: 18}} allowFontScaling={false}>
+                    ✅
+                  </Text>
+                }
               />
 
               <Text
@@ -131,6 +141,11 @@ const ClaimedRewards = () => {
                     }
                     height={22}
                     width={22}
+                    fallback={
+                      <Text style={{fontSize: 18}} allowFontScaling={false}>
+                        🕒
+                      </Text>
+                    }
                   />
 
                   {/* Middle Content */}
@@ -149,6 +164,11 @@ const ClaimedRewards = () => {
                           }
                           height={14}
                           width={14}
+                          fallback={
+                            <Text style={{fontSize: 18}} allowFontScaling={false}>
+                              i
+                            </Text>
+                          }
                         />
                       </TouchableOpacity>
                     </View>
@@ -167,6 +187,11 @@ const ClaimedRewards = () => {
                       }
                       height={18}
                       width={18}
+                      fallback={
+                        <Text style={{fontSize: 18}} allowFontScaling={false}>
+                          ✅
+                        </Text>
+                      }
                     />
                     <Text
                       style={styles.notificationText}

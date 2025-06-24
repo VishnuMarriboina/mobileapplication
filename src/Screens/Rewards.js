@@ -41,6 +41,11 @@ const Rewards = () => {
               width="100%" // Makes sure it fits the container
               height="100%" // Ensures it doesn't exceed the container
               // preserveAspectRatio="xMidYMid meet" // Ensures it scales properly
+              fallback={
+                <Text style={{fontSize: 18}} allowFontScaling={false}>
+                  🚚
+                </Text>
+              }
             />
             {/* <Text>Total:{ }</Text> */}
           </View>
@@ -76,6 +81,11 @@ const Rewards = () => {
             }
             height={28}
             width={28}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                🚚
+              </Text>
+            }
           />
 
           {/* Middle Content */}
@@ -95,6 +105,11 @@ const Rewards = () => {
             }
             height={22}
             width={22}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                🚚
+              </Text>
+            }
           />
         </TouchableOpacity>
         {/* -----------------------02--------------------- */}
@@ -109,6 +124,11 @@ const Rewards = () => {
             }
             height={28}
             width={28}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                🚚
+              </Text>
+            }
           />
           {/* Middle Content */}
           <View style={styles.textContainer}>
@@ -127,6 +147,11 @@ const Rewards = () => {
             }
             height={22}
             width={22}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                🚚
+              </Text>
+            }
           />
         </TouchableOpacity>
 

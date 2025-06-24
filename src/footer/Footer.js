@@ -1,197 +1,210 @@
-import React, { useEffect, useState } from "react";
-import { Keyboard, StyleSheet, View, TouchableWithoutFeedback } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Trips from "../Screens/Trips";
-import DashboardScreen from "../Screens/DashboardScreen";
-import Rewards from "../Screens/Rewards";
-import Header from "../Components/Header";
-import { SvgUri } from "react-native-svg";
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from "../Utils/Dimensions";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
+import React, {useEffect, useState} from 'react';
+import {
+  Keyboard,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Text,
+} from 'react-native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Trips from '../Screens/Trips';
+import DashboardScreen from '../Screens/DashboardScreen';
+import Rewards from '../Screens/Rewards';
+import Header from '../Components/Header';
+import {SvgUri} from 'react-native-svg';
+import {SCREEN_WIDTH, SCREEN_HEIGHT} from '../Utils/Dimensions';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
 
-
-
-
 const Footer = () => {
+  const insets = useSafeAreaInsets(); // get bottom inset
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
-    const insets = useSafeAreaInsets(); // get bottom inset
-    const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+  console.log('insests tab', insets);
 
-
-    console.log("insests tab", insets);
-
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
-            setIsKeyboardVisible(true);
-        });
-
-        const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-            setIsKeyboardVisible(false);
-        });
-
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
-
-    return (
-        <Tab.Navigator
-            initialRouteName="Dashboard"
-            screenOptions={({ route }) => ({
-                header: () => <Header title={route.name} />,
-                tabBarActiveTintColor: '#fff',
-                tabBarInactiveTintColor: 'rgba(255,255,255,0.6)',
-                tabBarShowLabel: true,
-                tabBarStyle: isKeyboardVisible
-                    ? { display: "none" }
-                    : {
-                        // height: SCREEN_HEIGHT * 0.09,
-                        height: SCREEN_HEIGHT * 0.07 + insets.bottom, // 👈 add safe area
-                        backgroundColor: '#282A37',
-                        borderTopWidth: 0,
-                        borderTopLeftRadius: 30,
-                        borderTopRightRadius: 30,
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        elevation: 0,
-                        shadowColor: 'transparent',
-                        shadowOffset: { width: 0, height: 0 },
-                        shadowOpacity: 0,
-                        shadowRadius: 0,
-                        // paddingBottom: 10,
-                        paddingBottom: 10 + insets.bottom, // extra padding
-                        paddingVertical: 13,
-                        width: SCREEN_WIDTH,
-                        justifyContent: "center",
-                        alignItems: "center"
-                    },
-            })}
-        >
-            <Tab.Screen
-                name="Trips"
-                component={Trips}
-                options={{
-                    title: '',
-                    tabBarButton: (props) => (
-                        <TouchableWithoutFeedback {...props}>
-                            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{props.children}</View>
-                        </TouchableWithoutFeedback>
-                    ),
-                    tabBarIcon: () => (
-                        <View style={styles.icons}>
-                            <SvgUri
-                                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/tripsnavbar.svg"
-                                width={30}
-                                height={30}
-                            />
-                        </View>
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name="Dashboard"
-                component={DashboardScreen}
-                options={{
-                    tabBarHideOnKeyboard: true,
-                    title: '',
-                    tabBarButton: (props) => (
-                        <TouchableWithoutFeedback {...props}>
-                            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{props.children}</View>
-                        </TouchableWithoutFeedback>
-                    ),
-                    tabBarIcon: () => (
-                        <View style={styles.centerIconContainer}>
-                            <SvgUri
-                                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/SC-P+V2/Dashboard.svg"
-                                style={styles.centerIcon}
-                            />
-                        </View>
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name="Rewards"
-                component={Rewards}
-                options={{
-                    title: '',
-                    tabBarButton: (props) => (
-                        <TouchableWithoutFeedback {...props}>
-                            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{props.children}</View>
-                        </TouchableWithoutFeedback>
-                    ),
-                    tabBarIcon: () => (
-                        <View style={styles.icons}>
-                            <SvgUri
-                                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewardsnavbar.svg"
-                                width={30}
-                                height={30}
-                            />
-                        </View>
-                    ),
-                }}
-            />
-        </Tab.Navigator>
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setIsKeyboardVisible(true);
+      },
     );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setIsKeyboardVisible(false);
+      },
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
+  return (
+    <Tab.Navigator
+      initialRouteName="Dashboard"
+      screenOptions={({route}) => ({
+        header: () => <Header title={route.name} />,
+        tabBarActiveTintColor: '#fff',
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.6)',
+        tabBarShowLabel: true,
+        tabBarStyle: isKeyboardVisible
+          ? {display: 'none'}
+          : {
+              // height: SCREEN_HEIGHT * 0.09,
+              height: SCREEN_HEIGHT * 0.07 + insets.bottom, // 👈 add safe area
+              backgroundColor: '#282A37',
+              borderTopWidth: 0,
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30,
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              elevation: 0,
+              shadowColor: 'transparent',
+              shadowOffset: {width: 0, height: 0},
+              shadowOpacity: 0,
+              shadowRadius: 0,
+              // paddingBottom: 10,
+              paddingBottom: 10 + insets.bottom, // extra padding
+              paddingVertical: 13,
+              width: SCREEN_WIDTH,
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+      })}>
+      <Tab.Screen
+        name="Trips"
+        component={Trips}
+        options={{
+          title: '',
+          tabBarButton: props => (
+            <TouchableWithoutFeedback {...props}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                {props.children}
+              </View>
+            </TouchableWithoutFeedback>
+          ),
+          tabBarIcon: () => (
+            <View style={styles.icons}>
+              <SvgUri
+                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/tripsnavbar.svg"
+                width={30}
+                height={30}
+                fallback={
+                  <Text style={{fontSize: 18}} allowFontScaling={false}>
+                    🚚
+                  </Text>
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Dashboard"
+        component={DashboardScreen}
+        options={{
+          tabBarHideOnKeyboard: true,
+          title: '',
+          tabBarButton: props => (
+            <TouchableWithoutFeedback {...props}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                {props.children}
+              </View>
+            </TouchableWithoutFeedback>
+          ),
+          tabBarIcon: () => (
+            <View style={styles.centerIconContainer}>
+              <SvgUri
+                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/SC-P+V2/Dashboard.svg"
+                style={styles.centerIcon}
+                fallback={
+                  <Text style={{fontSize: 18}} allowFontScaling={false}>
+                    🚚
+                  </Text>
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Rewards"
+        component={Rewards}
+        options={{
+          title: '',
+          tabBarButton: props => (
+            <TouchableWithoutFeedback {...props}>
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                {props.children}
+              </View>
+            </TouchableWithoutFeedback>
+          ),
+          tabBarIcon: () => (
+            <View style={styles.icons}>
+              <SvgUri
+                uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/rewardsnavbar.svg"
+                width={30}
+                height={30}
+                fallback={
+                  <Text style={{fontSize: 18}} allowFontScaling={false}>
+                    🚚
+                  </Text>
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 };
 
 export default Footer;
 
 const styles = StyleSheet.create({
-    bottomtab: {
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-    },
-    centerIconContainer: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 30,
-    },
-    centerIcon: {
-        width: 60,
-        height: 60,
-    },
-    icons: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 20 ,
-    },
+  bottomtab: {
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+  },
+  centerIconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 30,
+  },
+  centerIcon: {
+    width: 60,
+    height: 60,
+  },
+  icons: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -224,8 +237,6 @@ const styles = StyleSheet.create({
 //         };
 //     }, []);
 
-
-
 //     return (
 
 //         <Tab.Navigator
@@ -239,7 +250,6 @@ const styles = StyleSheet.create({
 //                     // showStatus={route.name === "Dashboard"}
 //                     />
 //                 ),
-
 
 //                 tabBarActiveTintColor: '#fff',
 //                 tabBarInactiveTintColor: 'rgba(255,255,255,0.6)',
@@ -269,11 +279,6 @@ const styles = StyleSheet.create({
 //                 //     marginTop: 0,
 //                 // },
 
-
-
-
-
-
 //             })}>
 //             <Tab.Screen name="Trips" component={Trips}
 //                 style={{ padding: 50 }}
@@ -289,9 +294,6 @@ const styles = StyleSheet.create({
 //                         </View>),
 //                 }} />
 
-
-
-
 //             {/* <Tab.Screen name="Dashboard" component={Dashboard}
 //                 options={{
 //                     tabBarIcon: () => (
@@ -302,8 +304,6 @@ const styles = StyleSheet.create({
 
 //                         />),
 //                 }} /> */}
-
-
 
 //             <Tab.Screen
 //                 name="Dashboard"
@@ -323,14 +323,6 @@ const styles = StyleSheet.create({
 //                     ),
 //                 }}
 //             />
-
-
-
-
-
-
-
-
 
 //             <Tab.Screen name="Rewards" component={Rewards}
 //                 options={{
@@ -372,13 +364,6 @@ const styles = StyleSheet.create({
 //         // backgroundColor:"red"
 //     }
 // })
-
-
-
-
-
-
-
 
 // import React, { useEffect, useState } from "react";
 // import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";

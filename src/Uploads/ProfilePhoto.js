@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Alert, StatusBar, Platform } from 'react-native';
-import { SvgUri } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Alert,
+  StatusBar,
+  Platform,
+} from 'react-native';
+import {SvgUri} from 'react-native-svg';
+import {useNavigation} from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
-import { SCREEN_HEIGHT } from '../Utils/Dimensions';
+import {SCREEN_HEIGHT} from '../Utils/Dimensions';
 
 const ProfilePhoto = () => {
   const [profileImage, setProfileImage] = useState(null);
@@ -19,11 +28,13 @@ const ProfilePhoto = () => {
             height: 300,
             cropping: true,
             compressImageQuality: 0.8,
-          }).then(image => {
-            setProfileImage(image.path);
-          }).catch(e => {
-            if (e.code !== 'E_PICKER_CANCELLED') console.log(e);
-          });
+          })
+            .then(image => {
+              setProfileImage(image.path);
+            })
+            .catch(e => {
+              if (e.code !== 'E_PICKER_CANCELLED') console.log(e);
+            });
         },
       },
       {
@@ -34,14 +45,16 @@ const ProfilePhoto = () => {
             height: 300,
             cropping: true,
             compressImageQuality: 0.8,
-          }).then(image => {
-            setProfileImage(image.path);
-          }).catch(e => {
-            if (e.code !== 'E_PICKER_CANCELLED') console.log(e);
-          });
+          })
+            .then(image => {
+              setProfileImage(image.path);
+            })
+            .catch(e => {
+              if (e.code !== 'E_PICKER_CANCELLED') console.log(e);
+            });
         },
       },
-      { text: 'Cancel', style: 'cancel' },
+      {text: 'Cancel', style: 'cancel'},
     ]);
   };
 
@@ -55,31 +68,40 @@ const ProfilePhoto = () => {
 
   const handleContinue = () => {
     if (!profileImage) {
-      Alert.alert('Error', 'Please upload either both front and back sides of the Aadhar card OR upload a single PDF.');
+      Alert.alert(
+        'Error',
+        'Please upload either both front and back sides of the Aadhar card OR upload a single PDF.',
+      );
       return;
     }
 
-    Alert.alert("Success", "Aadhar submitted successfully!");
+    Alert.alert('Success', 'Aadhar submitted successfully!');
     navigation.navigate('Insurance');
   };
 
-
-
   return (
     <>
-      <StatusBar barStyle={"dark-content"} backgroundColor="white" />
+      <StatusBar barStyle={'dark-content'} backgroundColor="white" />
 
       <View
         style={[
           styles.headertop,
-          { paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 },
-        ]}
-      >
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          {paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0},
+        ]}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
           <SvgUri
-            uri={"https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg"}
+            uri={
+              'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg'
+            }
             height={18}
             width={18}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                ←⬅️
+              </Text>
+            }
           />
         </TouchableOpacity>
 
@@ -92,16 +114,28 @@ const ProfilePhoto = () => {
           <TouchableOpacity style={styles.uploadBox} onPress={pickImage}>
             {profileImage ? (
               <>
-                <Image source={{ uri: profileImage }} style={styles.previewImage} />
-                <TouchableOpacity style={styles.removeBtn} onPress={removePhoto}>
+                <Image
+                  source={{uri: profileImage}}
+                  style={styles.previewImage}
+                />
+                <TouchableOpacity
+                  style={styles.removeBtn}
+                  onPress={removePhoto}>
                   <Text style={styles.removeText}>✕</Text>
                 </TouchableOpacity>
               </>
             ) : (
               <SvgUri
-                uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg'}
+                uri={
+                  'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/camera.svg'
+                }
                 width={60}
                 height={60}
+                fallback={
+                  <Text style={{fontSize: 60}} allowFontScaling={false}>
+                    📸
+                  </Text>
+                }
               />
             )}
           </TouchableOpacity>
@@ -113,7 +147,9 @@ const ProfilePhoto = () => {
             <TouchableOpacity style={styles.cancelBtn} onPress={handleSkip}>
               <Text style={styles.cancelText}>Skip</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.continueBtn} onPress={handleContinue}>
+            <TouchableOpacity
+              style={styles.continueBtn}
+              onPress={handleContinue}>
               <Text style={styles.continueText}>Continue</Text>
             </TouchableOpacity>
           </View>
@@ -127,23 +163,23 @@ export default ProfilePhoto;
 
 const styles = StyleSheet.create({
   headertop: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: 16,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
   },
   backButton: {
     paddingVertical: 12,
   },
   headerText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   container: {
     flex: 1,
-    backgroundColor: "#E5E7EB",
-    alignItems: "center",
+    backgroundColor: '#E5E7EB',
+    alignItems: 'center',
   },
   uploadBox: {
     borderWidth: 1,

@@ -248,6 +248,7 @@ const NotificationScreen = () => {
               uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg'}
               height={18}
               width={18}
+              fallback={<Text style={{ fontSize: 18 }} allowFontScaling={false}>🚚</Text>}
             />
           </TouchableOpacity>
 

@@ -36,7 +36,7 @@ const UnclaimedRewards = () => {
     <>
       <StatusBar barStyle={'dark-content'} backgroundColor="white" />
 
-      <View style={{flex: 1, backgroundColor: 'red'}}>
+      <View style={{flex: 1,}}>
         {/* <View style={styles.header}> */}
         <View
           style={[
@@ -56,6 +56,9 @@ const UnclaimedRewards = () => {
               }
               height={18}
               width={18}
+              fallback={<Text style={{fontSize: 18}} allowFontScaling={false}>
+                  ⬅️
+              </Text>}
             />
           </TouchableOpacity>
 
@@ -87,6 +90,9 @@ const UnclaimedRewards = () => {
                 }
                 height={28}
                 width={28}
+                fallback={<Text style={{fontSize: 18}} allowFontScaling={false}>
+                    🎁
+                </Text>}
               />
               <Text
                 style={{fontSize: 20, fontWeight: '800', paddingHorizontal: 15}}
@@ -103,7 +109,8 @@ const UnclaimedRewards = () => {
                 <TouchableOpacity
                   style={styles.buttonContainer}
                   // onPress={() => navigation.goBack()}
-                  onPress={() => handleItemPress(item)}>
+                  // onPress={() => handleItemPress(item)}
+                  >
                   {/* Left Icon */}
                   <SvgUri
                     uri={
@@ -111,6 +118,9 @@ const UnclaimedRewards = () => {
                     }
                     height={22}
                     width={22}
+                    fallback={<Text style={{fontSize: 18}} allowFontScaling={false}>
+                      🕒
+                    </Text>}
                   />
 
                   {/* Middle Content */}
@@ -237,76 +247,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UnclaimedRewards; // Fixed export statement
+export default UnclaimedRewards; 
 
-// <TouchableOpacity style={styles.buttonContainer}
-// onPress={() => navigation.goBack()}
-// >
-// {/* Left Icon */}
-// <SvgUri
-//     uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/SC-P+V2/Vehicles.svg'}
-//     height={32}
-//     width={32}
-// />
-
-// {/* Middle Content */}
-// <View style={styles.textContainer}>
-
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-//     <Text style={styles.title}>₹1,25000.00</Text>
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-// </View>
-
-// {/* Reedem me button */}
-// <TouchableOpacity style={styles.indicator} onPress={() => navigation.goBack()}>
-//     <Text style={styles.notificationText}>Reedem</Text>
-// </TouchableOpacity>
-// </TouchableOpacity>
-
-// <TouchableOpacity style={styles.buttonContainer}
-// onPress={() => navigation.goBack()}
-// >
-// {/* Left Icon */}
-// <SvgUri
-//     uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/SC-P+V2/Vehicles.svg'}
-//     height={32}
-//     width={32}
-// />
-
-// {/* Middle Content */}
-// <View style={styles.textContainer}>
-
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-//     <Text style={styles.title}>₹1,25000.00</Text>
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-// </View>
-
-// {/* Reedem me button */}
-// <TouchableOpacity style={styles.indicator} onPress={() => navigation.goBack()}>
-//     <Text style={styles.notificationText}>Reedem</Text>
-// </TouchableOpacity>
-// </TouchableOpacity>
-
-// <TouchableOpacity style={styles.buttonContainer}
-// onPress={() => navigation.goBack()}
-// >
-// {/* Left Icon */}
-// <SvgUri
-//     uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/SC-P+V2/Vehicles.svg'}
-//     height={32}
-//     width={32}
-// />
-
-// {/* Middle Content */}
-// <View style={styles.textContainer}>
-
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-//     <Text style={styles.title}>₹1,25000.00</Text>
-//     <Text style={styles.subtitle}>Net Claimed Rewards</Text>
-// </View>
-
-// {/* Reedem me button */}
-// <TouchableOpacity style={styles.indicator} onPress={() => navigation.goBack()}>
-//     <Text style={styles.notificationText}>Reedem</Text>
-// </TouchableOpacity>
-// </TouchableOpacity>

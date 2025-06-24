@@ -140,6 +140,7 @@ const Login = () => {
                         uri={'https://d3b1cj4ht2fm8t.cloudfront.net/staging/marketing+and+sales+app/logo_vertical.svg'}
                         width={SCREEN_WIDTH / 3}
                         height={SCREEN_HEIGHT / 6}
+                        fallback={<Text style={{fontSize: 18}} allowFontScaling={false}>🚚</Text>}
                     />
                     <Text style={styles.subtitle}>Driver App</Text>
                 </View>

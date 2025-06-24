@@ -1,11 +1,22 @@
-import React, { use, useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Alert, StatusBar, Platform, Modal, Linking } from 'react-native';
-import { SvgUri } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
+import React, {use, useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Alert,
+  StatusBar,
+  Platform,
+  Modal,
+  Linking,
+} from 'react-native';
+import {SvgUri} from 'react-native-svg';
+import {useNavigation} from '@react-navigation/native';
 import ImagePicker from 'react-native-image-crop-picker';
 import * as DocumentPicker from '@react-native-documents/picker';
 import CustomModal from '../Components/CustomModal';
-import { SCREEN_WIDTH } from '../Utils/Dimensions';
+import {SCREEN_WIDTH} from '../Utils/Dimensions';
 
 const Aadhar = () => {
   const [frontImage, setFrontImage] = useState(null);
@@ -17,9 +28,8 @@ const Aadhar = () => {
 
   const navigation = useNavigation();
 
+  console.log('DocumentPickerPackages data', DocumentPicker);
 
-  console.log("DocumentPickerPackages data", DocumentPicker)
-  
   const handleBack = () => {
     navigation.goBack();
   };
@@ -28,18 +38,20 @@ const Aadhar = () => {
     navigation.navigate('ProfilePhoto');
   };
 
-
   const handleContinue = () => {
     if ((!frontImage || !backImage) && !pdfUri) {
-      Alert.alert('Error', 'Please upload either both front and back sides of the Aadhar card OR upload a single PDF.');
+      Alert.alert(
+        'Error',
+        'Please upload either both front and back sides of the Aadhar card OR upload a single PDF.',
+      );
       return;
     }
 
-    Alert.alert("Success", "Aadhar submitted successfully!");
+    Alert.alert('Success', 'Aadhar submitted successfully!');
     navigation.navigate('ProfilePhoto');
   };
 
-  const openUploadOptions = (side) => {
+  const openUploadOptions = side => {
     setSideSelected(side);
     setOptionModalVisible(true);
   };
@@ -102,14 +114,7 @@ const Aadhar = () => {
     }
   };
 
-
-
-
-
-
-
-
-  const setImageToSide = (uri) => {
+  const setImageToSide = uri => {
     if (sideSelected === 'front') setFrontImage(uri);
     else if (sideSelected === 'back') setBackImage(uri);
   };
@@ -117,72 +122,102 @@ const Aadhar = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
-      <View style={[styles.headertop, { paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}>
+      <View
+        style={[
+          styles.headertop,
+          {paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0},
+        ]}>
         <TouchableOpacity style={styles.backButton} onPress={handleBack}>
           <SvgUri
             uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/arrowback.svg"
             height={18}
             width={18}
+            fallback={
+              <Text style={{fontSize: 18}} allowFontScaling={false}>
+                ⬅️
+              </Text>
+            }
           />
         </TouchableOpacity>
         <Text style={styles.headerText}>Please Upload Insurance Card</Text>
-        <View style={{ width: 18 }} />
+        <View style={{width: 18}} />
       </View>
 
       <View style={styles.container}>
-      <Text style={styles.header}>Please Upload Insurance Card</Text>
-      <Text style={styles.subText}>Please upload both sides of your card</Text>
+        <Text style={styles.header}>Please Upload Insurance Card</Text>
+        <Text style={styles.subText}>
+          Please upload both sides of your card
+        </Text>
 
         {uploadPdf && pdfUri ? (
           <View style={styles.pdfPreviewContainer}>
             <Text style={styles.title}>PDF File Selected</Text>
             <TouchableOpacity
               style={styles.viewPdfBtn}
-              onPress={() => Linking.openURL(pdfUri)}
-            >
+              onPress={() => Linking.openURL(pdfUri)}>
               <Text style={styles.viewPdfText}>View PDF</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.uploadAgainBtn}
-              onPress={handlePickDocument}
-            >
+              onPress={handlePickDocument}>
               <Text style={styles.tapText}>Tap to Upload Again</Text>
             </TouchableOpacity>
           </View>
         ) : (
           <>
-            <TouchableOpacity style={styles.uploadBox} onPress={() => openUploadOptions('front')}>
+            <TouchableOpacity
+              style={styles.uploadBox}
+              onPress={() => openUploadOptions('front')}>
               {frontImage ? (
-                <Image source={{ uri: frontImage }} style={styles.previewImage} />
+                <Image source={{uri: frontImage}} style={styles.previewImage} />
               ) : (
                 <>
                   <Text style={styles.title}>Front Side</Text>
-                  <SvgUri uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg" height={28} width={28} />
+                  <SvgUri
+                    uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg"
+                    height={28}
+                    width={28}
+                    fallback={
+                      <Text style={{fontSize: 28}} allowFontScaling={false}>
+                        📤
+                      </Text>
+                    }
+                  />
                   <Text style={styles.tapText}>Tap to upload Front Side</Text>
-                  <Text style={styles.formatText}>Supported formats: JPG, PNG, PDF</Text>
+                  <Text style={styles.formatText}>
+                    Supported formats: JPG, PNG, PDF
+                  </Text>
                 </>
               )}
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.uploadBox} onPress={() => openUploadOptions('back')}>
+            <TouchableOpacity
+              style={styles.uploadBox}
+              onPress={() => openUploadOptions('back')}>
               {backImage ? (
-                <Image source={{ uri: backImage }} style={styles.previewImage} />
+                <Image source={{uri: backImage}} style={styles.previewImage} />
               ) : (
                 <>
                   <Text style={styles.title}>Back Side</Text>
-                  <SvgUri uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg" height={28} width={28} />
+                  <SvgUri
+                    uri="https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload.svg"
+                    height={28}
+                    width={28}
+                    fallback={
+                      <Text style={{fontSize: 18}} allowFontScaling={false}>
+                        📤
+                      </Text>
+                    }
+                  />
                   <Text style={styles.tapText}>Tap to upload Back Side</Text>
-                  <Text style={styles.formatText}>Supported formats: JPG, PNG, PDF</Text>
+                  <Text style={styles.formatText}>
+                    Supported formats: JPG, PNG, PDF
+                  </Text>
                 </>
               )}
             </TouchableOpacity>
           </>
         )}
-
-
-
-
-
 
         <View style={styles.buttonRow}>
           <TouchableOpacity style={styles.cancelBtn} onPress={handleSkip}>
@@ -202,27 +237,28 @@ const Aadhar = () => {
         onRequestClose={() => setOptionModalVisible(false)}
       > */}
 
-<CustomModal isVisible={optionModalVisible} onClose={() => setOptionModalVisible(false)}>
-<View style={styles.modalContainer}>
-
-        {/* <View style={styles.modalOverlay}>
+      <CustomModal
+        isVisible={optionModalVisible}
+        onClose={() => setOptionModalVisible(false)}>
+        <View style={styles.modalContainer}>
+          {/* <View style={styles.modalOverlay}>
           <View style={styles.modalBox}> */}
-            <TouchableOpacity onPress={handleImageFromCamera}>
-              <Text style={styles.modalText}>Take from Camera</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleImageFromGallery}>
-              <Text style={styles.modalText}>Choose from Gallery</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handlePickDocument}>
-              <Text style={styles.modalText}>Upload PDF</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
-              <Text style={[styles.modalText, { color: 'red' }]}>Cancel</Text>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={handleImageFromCamera}>
+            <Text style={styles.modalText}>Take from Camera</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleImageFromGallery}>
+            <Text style={styles.modalText}>Choose from Gallery</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handlePickDocument}>
+            <Text style={styles.modalText}>Upload PDF</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => setOptionModalVisible(false)}>
+            <Text style={[styles.modalText, {color: 'red'}]}>Cancel</Text>
+          </TouchableOpacity>
           {/* </View>
         </View> */}
         </View>
-        </CustomModal>
+      </CustomModal>
       {/* </Modal> */}
     </>
   );
@@ -320,18 +356,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
-   modalContainer: {
-      // flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "white",
-      padding: 20,
-      borderRadius: 10,
-      // width: "90%",
-      width: SCREEN_WIDTH,
-      alignSelf: "center",
-      // backgroundColor: BRANDCOLOR
-    },
+  modalContainer: {
+    // flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    // width: "90%",
+    width: SCREEN_WIDTH,
+    alignSelf: 'center',
+    // backgroundColor: BRANDCOLOR
+  },
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -357,66 +393,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 10,
-    marginBottom: 20
+    marginBottom: 20,
   },
   viewPdfBtn: {
     marginTop: 10,
     padding: 10,
     backgroundColor: '#28a745',
-    borderRadius: 8
+    borderRadius: 8,
   },
   viewPdfText: {
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   uploadAgainBtn: {
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState } from 'react';
 // import { View, Text, TouchableOpacity, Image, StyleSheet, Button, Alert, StatusBar } from 'react-native';
@@ -429,13 +421,11 @@ const styles = StyleSheet.create({
 //   const [frontImage, setFrontImage] = useState(null);
 //   const [backImage, setBackImage] = useState(null);
 
-
 //   // const [showProfilePhoto, setShowProfilePhoto] = useState(false);
 
 //   // const handleCancel = () => {
 //   //   navigation.goBack();
 //   // }
-
 
 //   // const handleContinue = () => {
 
@@ -454,7 +444,6 @@ const styles = StyleSheet.create({
 //     alert("Insurance submitted successfully!");
 //     navigation.navigate('ProfilePhoto');
 //   };
-
 
 //   // const pickImage = async (side) => {
 //   //   const result = await launchImageLibrary({ mediaType: 'photo' });
@@ -538,8 +527,6 @@ const styles = StyleSheet.create({
 //           )}
 //         </TouchableOpacity>
 
-
-
 //         {/* {condition ? ( */}
 
 //           <View style={styles.buttonRow}>
@@ -578,16 +565,11 @@ const styles = StyleSheet.create({
 //           </TouchableOpacity>
 //           <TouchableOpacity style={styles.continueBtn}
 //             onPress={handleContinue}
-          
+
 //           >
 //             <Text style={styles.continueText}>Continue</Text>
 //           </TouchableOpacity>
 //         </View> */}
-
-
-
-
-
 
 //       </View>
 //     </>
@@ -690,32 +672,12 @@ const styles = StyleSheet.create({
 //   },
 // });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState } from 'react'
 
 // import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 // import { useNavigation } from '@react-navigation/native'
 // import { SCREEN_HEIGHT } from '../Utils/Dimensions';
 // import ProfilePhoto from './ProfilePhoto';
-
 
 // const Insurance = () => {
 
@@ -726,15 +688,12 @@ const styles = StyleSheet.create({
 //     navigation.goBack();
 //   }
 
-
 //   const handleSubmit = () => {
 
 //     alert("Insurence submitted successfully!");
 //     setShowProfilePhoto(true)
 //   }
 //   if (showProfilePhoto) { return <ProfilePhoto /> }
-
-
 
 //   return (
 //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

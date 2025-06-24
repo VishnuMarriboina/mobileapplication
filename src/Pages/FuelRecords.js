@@ -208,6 +208,7 @@ const FuelRecords = () => {
                                                         'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
                                                     }
                                                     style={{ width: 24, height: 24 }}
+                                                    fallback={<Text style={{ fontSize: 18 }} allowFontScaling={false}>📅</Text>}
 
                                                 />
                                                 <Text>Date</Text>
@@ -218,6 +219,7 @@ const FuelRecords = () => {
                                                         'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/timeline.svg'
                                                     }
                                                     style={{ width: 24, height: 24 }}
+                                                    fallback={<Text style={{ fontSize: 18 }} allowFontScaling={false}>⌛</Text>}
 
                                                 />
 
@@ -271,6 +273,7 @@ const FuelRecords = () => {
                                                     'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/upload2.svg'
                                                 }
                                                 style={{ width: 24, height: 24 }}
+                                                fallback={<Text style={{ fontSize: 18 }} allowFontScaling={false}>📁</Text>}
 
                                             />
                                         </TouchableOpacity>
@@ -300,6 +303,7 @@ const FuelRecords = () => {
                                                 'https://d3b1cj4ht2fm8t.cloudfront.net/staging/Driver+App/calenderfilled.svg'
                                             }
                                             style={{ width: 24, height: 24 }}
+                                            fallback={<Text style={{ fontSize: 18 }} allowFontScaling={false}>📅</Text>}
 
                                         />
                                     </View>
