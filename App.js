@@ -17,9 +17,7 @@ import ProfilePhoto from './src/Uploads/ProfilePhoto';
 import Splash from './src/Components/Splash';
 import Login from './src/login/Login';
 import MainStack from './src/Stacks/MainStack';
-import amplifyconfig from './amplifyconfiguration.json';
-import {Amplify} from 'aws-amplify';
-Amplify.configure(amplifyconfig);
+import PhoneOTP from './src/Components/PhoneOTP';
 
 const App = () => {
   return (
@@ -42,6 +40,8 @@ const App = () => {
                   {/* <Login /> */}
                   {/* <Splash /> */}
                   <StartScreen />
+
+                  {/* <PhoneOTP /> */}
                   {/* <DriverDetails /> */}
                   {/* <Aadhar /> */}
                   {/* <Licence /> */}

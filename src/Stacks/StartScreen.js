@@ -8,14 +8,14 @@ const StartScreen = () => {
     const [isLoading, setIsLoading] = useState(true); // Correct variable name
     const dispatch = useDispatch();
     const { isNewUser, isAuthenticated } = useSelector(state => state.Authdata)
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setIsLoading(false);
-    //         // dispatch(setUser());
-    //         console.log("start scrren about authentication", isAuthenticated);
-    //         console.log("start scrren about user", isNewUser);
-    //     }, 5500);
-    // }, [isAuthenticated, isNewUser]);
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+            // dispatch(setUser());
+            console.log("start scrren about authentication", isAuthenticated);
+            console.log("start scrren about user", isNewUser);
+        }, 5500);
+    }, [isAuthenticated]);
 
 
 

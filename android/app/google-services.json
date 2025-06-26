@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "430288394904",
+    "project_id": "auth-ot",
+    "storage_bucket": "auth-ot.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430288394904:android:2bb51e4c9ccd16cae88eed",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk0ag3_RBcNMLY7cCvBnaiSEMhElbR6BE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

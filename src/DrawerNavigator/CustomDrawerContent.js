@@ -17,6 +17,7 @@ import {SCREEN_WIDTH} from '../Utils/Dimensions';
 import {logout, resetAuth} from '../Redux/Slices/AuthSlice';
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
+
 const CustomDrawerContent = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -30,8 +31,13 @@ const CustomDrawerContent = () => {
       {
         text: 'Logout',
         onPress: async () => {
-          dispatch(resetAuth());
-          navigation.replace('Login');
+          console.log('logout called');
+          // navigation.replace('Login');
+         dispatch(logout());
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Login'}],
+          });
         },
       },
     ]);
